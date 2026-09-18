@@ -1,0 +1,4055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Crazy eSports - User Panel</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#08090d;
+  --card:#111319;
+  --card2:#171a21;
+  --border:#282d38;
+  --primary:#695cff;
+  --primary2:#8b5cf6;
+  --green:#35d47c;
+  --red:#ff5967;
+  --orange:#ffae42;
+  --text:#fff;
+  --muted:#858c9b;
+}
+
+html{scroll-behavior:smooth}
+
+body{
+  font-family:Inter,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  padding-bottom:78px;
+}
+
+button,input,textarea{
+  font-family:inherit;
+}
+
+button{
+  cursor:pointer;
+  border:0;
+}
+
+.hidden{
+  display:none!important;
+}
+
+/* =====================================================
+   LOGIN / SIGNUP
+===================================================== */
+
+#authScreen{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:
+    radial-gradient(circle at top,#211b45,#08090d 58%);
+}
+
+.authBox{
+  width:100%;
+  max-width:420px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:25px;
+  padding:29px;
+  box-shadow:0 25px 80px #000b;
+}
+
+.logo{
+  width:76px;
+  height:76px;
+  border-radius:23px;
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 16px;
+  font-size:32px;
+  box-shadow:0 15px 40px #695cff55;
+}
+
+.authBox h1{
+  text-align:center;
+  font-size:26px;
+}
+
+.authSub{
+  text-align:center;
+  color:var(--muted);
+  font-size:12px;
+  margin:7px 0 23px;
+}
+
+.input{
+  width:100%;
+  padding:13px 14px;
+  background:var(--card2);
+  border:1px solid var(--border);
+  color:#fff;
+  border-radius:12px;
+  outline:none;
+  margin-bottom:12px;
+}
+
+.input:focus{
+  border-color:var(--primary);
+}
+
+.btn{
+  width:100%;
+  padding:13px;
+  border-radius:12px;
+  color:#fff;
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  font-weight:700;
+}
+
+.btn.secondary{
+  background:#20242d;
+}
+
+.btn.green{
+  background:var(--green);
+  color:#07130c;
+}
+
+.btn.red{
+  background:var(--red);
+}
+
+.switchText{
+  text-align:center;
+  color:var(--muted);
+  font-size:12px;
+  margin-top:17px;
+}
+
+.switchText span{
+  color:#9389ff;
+  font-weight:700;
+  cursor:pointer;
+}
+
+/* =====================================================
+   APP
+===================================================== */
+
+#app{
+  max-width:900px;
+  margin:auto;
+}
+
+.header{
+  position:sticky;
+  top:0;
+  z-index:30;
+  background:#08090ded;
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid #222631;
+  padding:14px 15px;
+}
+
+.headerInner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.brandIcon{
+  width:44px;
+  height:44px;
+  border-radius:13px;
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.brandText b{
+  display:block;
+  font-size:16px;
+}
+
+.brandText small{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  margin-top:2px;
+}
+
+.wallet{
+  background:#171a21;
+  border:1px solid #303642;
+  color:#6ce99a;
+  padding:9px 12px;
+  border-radius:11px;
+  font-weight:800;
+  font-size:13px;
+}
+
+/* =====================================================
+   PAGES
+===================================================== */
+
+main{
+  padding:18px 14px;
+}
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+.pageTitle{
+  font-size:21px;
+  font-weight:800;
+  margin-bottom:15px;
+}
+
+/* =====================================================
+   HOME HERO
+===================================================== */
+
+.hero{
+  background:linear-gradient(135deg,#191536,#111319);
+  border:1px solid #383260;
+  border-radius:19px;
+  padding:18px;
+  margin-bottom:15px;
+}
+
+.hero h2{
+  font-size:20px;
+}
+
+.hero p{
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.6;
+  margin-top:6px;
+}
+
+.heroActions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  margin-top:14px;
+}
+
+.actionBtn{
+  padding:12px;
+  border-radius:11px;
+  background:#20242d;
+  color:#fff;
+  border:1px solid #2c323d;
+  font-weight:700;
+}
+
+.actionBtn i{
+  color:#968cff;
+  margin-right:5px;
+}
+
+/* =====================================================
+   GENERAL CARD
+===================================================== */
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:17px;
+  padding:15px;
+  margin-bottom:13px;
+}
+
+.row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.muted{
+  color:var(--muted);
+  font-size:11px;
+}
+
+.divider{
+  height:1px;
+  background:#272c35;
+  margin:12px 0;
+}
+
+/* =====================================================
+   🔴 NEW: GIFT CODE
+===================================================== */
+
+.giftCard{
+  background:linear-gradient(135deg,#211b42,#111319);
+  border:1px solid #42376e;
+  border-radius:18px;
+  padding:17px;
+  margin-bottom:15px;
+}
+
+.giftCard h3{
+  font-size:16px;
+}
+
+.giftCard p{
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.5;
+  margin:5px 0 12px;
+}
+
+.giftRow{
+  display:flex;
+  gap:8px;
+}
+
+.giftRow .input{
+  margin:0;
+  text-transform:uppercase;
+  font-weight:700;
+  letter-spacing:1px;
+}
+
+.giftBtn{
+  width:105px;
+  flex-shrink:0;
+}
+
+/* =====================================================
+   TOURNAMENT
+===================================================== */
+
+.tournamentImage{
+  width:100%;
+  height:160px;
+  object-fit:cover;
+  border-radius:13px;
+  background:#181b22;
+  margin-bottom:12px;
+}
+
+.tournamentTitle{
+  font-size:17px;
+  font-weight:800;
+  line-height:1.3;
+}
+
+.metaGrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:12px;
+}
+
+.meta{
+  background:var(--card2);
+  border-radius:10px;
+  padding:9px;
+}
+
+.meta span{
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+}
+
+.meta b{
+  display:block;
+  margin-top:3px;
+  font-size:12px;
+}
+
+.joinBtn{
+  width:100%;
+  margin-top:12px;
+  padding:12px;
+  border-radius:11px;
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  color:#fff;
+  font-weight:700;
+}
+
+.joinBtn.joined{
+  background:#173b28;
+  color:#68ee9b;
+}
+
+.joinBtn.full{
+  background:#292d35;
+  color:#858c9b;
+}
+
+/* =====================================================
+   MATCH
+===================================================== */
+
+.matchTitle{
+  font-size:16px;
+  font-weight:800;
+}
+
+.badge{
+  display:inline-block;
+  background:#20242d;
+  color:#aab0bc;
+  padding:5px 8px;
+  border-radius:8px;
+  font-size:9px;
+  margin-top:6px;
+}
+
+.roomBox{
+  background:#171a21;
+  border:1px solid #272c36;
+  border-radius:12px;
+  padding:12px;
+  margin-top:12px;
+}
+
+.roomRow{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:8px 0;
+  border-bottom:1px solid #292e37;
+}
+
+.roomRow:last-child{
+  border-bottom:0;
+}
+
+.roomRow span{
+  color:var(--muted);
+  font-size:11px;
+}
+
+.roomRow b{
+  font-size:12px;
+  word-break:break-all;
+}
+
+.roomWaiting{
+  color:#ffbd58;
+  font-size:11px;
+  margin-top:10px;
+}
+
+/* =====================================================
+   TRANSACTIONS
+===================================================== */
+
+.tx{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  padding:12px 0;
+  border-bottom:1px solid #252a33;
+}
+
+.tx:last-child{
+  border-bottom:0;
+}
+
+.txLeft{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+}
+
+.txIcon{
+  width:38px;
+  height:38px;
+  border-radius:11px;
+  background:#1b1f27;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+}
+
+.txInfo{
+  min-width:0;
+}
+
+.txTitle{
+  font-size:12px;
+  font-weight:700;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.txDate{
+  color:#737a88;
+  font-size:9px;
+  margin-top:3px;
+}
+
+.credit{
+  color:#65e998;
+}
+
+.debit{
+  color:#ff6975;
+}
+
+/* =====================================================
+   PROFILE
+===================================================== */
+
+.profileCard{
+  text-align:center;
+}
+
+.avatar{
+  width:78px;
+  height:78px;
+  border-radius:50%;
+  border:3px solid var(--primary);
+}
+
+.profileName{
+  font-size:18px;
+  font-weight:800;
+  margin-top:9px;
+}
+
+.profileEmail{
+  color:var(--muted);
+  font-size:10px;
+  margin-top:4px;
+}
+
+.profileBtn{
+  width:100%;
+  padding:12px;
+  background:#171a21;
+  color:#fff;
+  border:1px solid #2a303b;
+  border-radius:11px;
+  text-align:left;
+  margin-top:9px;
+  font-weight:600;
+}
+
+.profileBtn i{
+  width:27px;
+  color:#9187ff;
+}
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:#000c;
+  z-index:100;
+  display:none;
+  align-items:flex-end;
+  justify-content:center;
+  padding:12px;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modalBox{
+  width:100%;
+  max-width:550px;
+  max-height:90vh;
+  overflow:auto;
+  background:var(--card);
+  border:1px solid #2c313c;
+  border-radius:22px 22px 15px 15px;
+  padding:18px;
+  animation:modalUp .23s ease;
+}
+
+@keyframes modalUp{
+  from{
+    opacity:0;
+    transform:translateY(45px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.modalHeader{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:15px;
+}
+
+.modalHeader h3{
+  font-size:17px;
+}
+
+.close{
+  width:32px;
+  height:32px;
+  border-radius:10px;
+  background:#20242d;
+  color:#aaa;
+  font-size:18px;
+}
+
+/* =====================================================
+   PAYMENT QR
+===================================================== */
+
+/* 🔴 NEW: QR DOWNLOAD SYSTEM */
+
+.qrImage{
+  display:block;
+  width:210px;
+  height:210px;
+  object-fit:contain;
+  background:#fff;
+  padding:8px;
+  border-radius:13px;
+  margin:12px auto 14px;
+}
+
+.upiBox{
+  background:#171a21;
+  border:1px solid #292e38;
+  border-radius:11px;
+  padding:12px;
+  margin-bottom:12px;
+}
+
+.upiLabel{
+  color:var(--muted);
+  font-size:9px;
+}
+
+.upiValue{
+  display:block;
+  font-size:13px;
+  margin-top:4px;
+  word-break:break-all;
+}
+
+.downloadQR{
+  display:block;
+  width:100%;
+  padding:11px;
+  background:#20242d;
+  color:#fff;
+  border-radius:11px;
+  text-align:center;
+  margin-bottom:12px;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:700;
+}
+
+/* =====================================================
+   BOTTOM NAV
+===================================================== */
+
+.bottomNav{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  height:68px;
+  background:#0e1015f5;
+  backdrop-filter:blur(18px);
+  border-top:1px solid #242832;
+  z-index:50;
+}
+
+.navInner{
+  max-width:900px;
+  height:100%;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+}
+
+.navBtn{
+  background:transparent;
+  color:#707786;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  font-size:9px;
+}
+
+.navBtn i{
+  font-size:17px;
+}
+
+.navBtn.active{
+  color:#887cff;
+}
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+#toast{
+  position:fixed;
+  left:50%;
+  bottom:84px;
+  transform:translateX(-50%) translateY(20px);
+  background:#20242d;
+  border:1px solid #373d49;
+  color:#fff;
+  padding:11px 15px;
+  border-radius:12px;
+  font-size:11px;
+  z-index:300;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+  max-width:90%;
+  text-align:center;
+}
+
+#toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+.empty{
+  text-align:center;
+  color:#737a88;
+  padding:30px 10px;
+  font-size:12px;
+}
+
+.loading{
+  text-align:center;
+  color:#777e8d;
+  padding:25px;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:420px){
+
+  .heroActions{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .giftRow{
+    flex-direction:column;
+  }
+
+  .giftBtn{
+    width:100%;
+  }
+
+  .tournamentImage{
+    height:140px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     AUTH SCREEN
+===================================================== -->
+
+<section id="authScreen">
+
+  <div class="authBox">
+
+    <div class="logo">
+      <i class="fa-solid fa-trophy"></i>
+    </div>
+
+    <h1>Crazy eSports</h1>
+
+    <div class="authSub" id="authSub">
+      Login to continue
+    </div>
+
+    <div id="signupFields" class="hidden">
+
+      <input
+        id="signupUsername"
+        class="input"
+        type="text"
+        placeholder="Username"
+      >
+
+    </div>
+
+    <input
+      id="authEmail"
+      class="input"
+      type="email"
+      placeholder="Email"
+    >
+
+    <input
+      id="authPassword"
+      class="input"
+      type="password"
+      placeholder="Password"
+    >
+
+    <button
+      id="authButton"
+      class="btn"
+      type="button"
+    >
+      Login
+    </button>
+
+    <div id="authStatus" class="muted" style="text-align:center;margin-top:10px;min-height:16px"></div>
+
+    <div class="switchText">
+
+      <span id="switchText">
+        New user?
+      </span>
+
+      <span
+        id="switchButton"
+        onclick="toggleAuth()"
+      >
+        Create account
+      </span>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     USER APP
+===================================================== -->
+
+<section id="app" class="hidden">
+
+
+<header class="header">
+
+  <div class="headerInner">
+
+    <div class="brand">
+
+      <div class="brandIcon">
+        <i class="fa-solid fa-trophy"></i>
+      </div>
+
+      <div class="brandText">
+
+        <b>Crazy eSports</b>
+
+        <small id="headerUsername">
+          Player
+        </small>
+
+      </div>
+
+    </div>
+
+    <div class="wallet">
+      ₹<span id="headerBalance">0</span>
+    </div>
+
+  </div>
+
+</header>
+
+
+<main>
+
+
+<!-- =====================================================
+     HOME PAGE
+===================================================== -->
+
+<div class="page active" id="homePage">
+
+  <div class="hero">
+
+    <h2>
+      Welcome to Crazy eSports 🎮
+    </h2>
+
+    <p>
+      Join tournaments, play matches and win prizes.
+    </p>
+
+    <div class="heroActions">
+
+      <button
+        class="actionBtn"
+        onclick="openDeposit()"
+      >
+        <i class="fa-solid fa-plus"></i>
+        Deposit
+      </button>
+
+      <button
+        class="actionBtn"
+        onclick="openWithdraw()"
+      >
+        <i class="fa-solid fa-wallet"></i>
+        Withdraw
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       🔴 NEW: GIFT CODE
+  ===================================================== -->
+
+  <div class="giftCard">
+
+    <h3>
+      🎁 Redeem Gift Code
+    </h3>
+
+    <p>
+      Enter your Crazy eSports gift code to receive balance.
+    </p>
+
+    <div class="giftRow">
+
+      <input
+        id="giftCodeInput"
+        class="input"
+        placeholder="ENTER GIFT CODE"
+      >
+
+      <button
+        class="btn giftBtn"
+        onclick="redeemGiftCode()"
+      >
+        Redeem
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="pageTitle">
+    Upcoming Tournaments
+  </div>
+
+  <div id="tournamentList">
+
+    <div class="loading">
+      Loading tournaments...
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     MATCHES PAGE
+===================================================== -->
+
+<div class="page" id="matchesPage">
+
+  <div class="pageTitle">
+    My Matches
+  </div>
+
+  <div id="matchesList">
+
+    <div class="loading">
+      Loading matches...
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     TRANSACTIONS PAGE
+===================================================== -->
+
+<div class="page" id="transactionsPage">
+
+  <div class="pageTitle">
+    Transaction History
+  </div>
+
+  <div class="card">
+
+    <div id="transactionList">
+
+      <div class="loading">
+        Loading transactions...
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     PROFILE PAGE
+===================================================== -->
+
+<div class="page" id="profilePage">
+
+  <div class="card profileCard">
+
+    <img
+      id="profileAvatar"
+      class="avatar"
+      src=""
+      alt="Profile"
+    >
+
+    <div
+      id="profileName"
+      class="profileName"
+    >
+      Player
+    </div>
+
+    <div
+      id="profileEmail"
+      class="profileEmail"
+    >
+    </div>
+
+    <button
+      class="profileBtn"
+      onclick="openUsernameModal()"
+    >
+      <i class="fa-solid fa-user-pen"></i>
+      Edit Username
+    </button>
+
+    <button
+      class="profileBtn"
+      onclick="openPasswordModal()"
+    >
+      <i class="fa-solid fa-lock"></i>
+      Change Password
+    </button>
+
+    <button
+      class="profileBtn"
+      onclick="openSupportModal()"
+    >
+      <i class="fa-solid fa-headset"></i>
+      Help & Support
+    </button>
+
+    <button
+      class="profileBtn"
+      onclick="logout()"
+    >
+      <i class="fa-solid fa-right-from-bracket"></i>
+      Logout
+    </button>
+
+  </div>
+
+</div>
+
+
+</main>
+
+
+<!-- =====================================================
+     BOTTOM NAV
+===================================================== -->
+
+<nav class="bottomNav">
+
+  <div class="navInner">
+
+    <button
+      class="navBtn active"
+      onclick="goPage('home',this)"
+    >
+      <i class="fa-solid fa-house"></i>
+      <span>Home</span>
+    </button>
+
+    <button
+      class="navBtn"
+      onclick="goPage('matches',this)"
+    >
+      <i class="fa-solid fa-gamepad"></i>
+      <span>Matches</span>
+    </button>
+
+    <button
+      class="navBtn"
+      onclick="goPage('transactions',this)"
+    >
+      <i class="fa-solid fa-clock-rotate-left"></i>
+      <span>History</span>
+    </button>
+
+    <button
+      class="navBtn"
+      onclick="goPage('profile',this)"
+    >
+      <i class="fa-solid fa-user"></i>
+      <span>Profile</span>
+    </button>
+
+  </div>
+
+</nav>
+
+</section>
+
+
+<!-- =====================================================
+     DEPOSIT MODAL
+===================================================== -->
+
+<div class="modal" id="depositModal">
+
+  <div class="modalBox">
+
+    <div class="modalHeader">
+
+      <h3>
+        Deposit Money
+      </h3>
+
+      <button
+        class="close"
+        onclick="closeModal('depositModal')"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <div class="upiBox">
+
+      <div class="upiLabel">
+        Admin UPI ID
+      </div>
+
+      <span
+        id="adminUpi"
+        class="upiValue"
+      >
+        Not configured
+      </span>
+
+    </div>
+
+
+    <!-- 🔴 NEW: PAYMENT QR -->
+
+    <img
+      id="paymentQR"
+      class="qrImage"
+      src=""
+      alt="Payment QR"
+    >
+
+
+    <!-- 🔴 NEW: QR DOWNLOAD BUTTON -->
+
+    <a
+      id="downloadQRBtn"
+      class="downloadQR"
+      href="#"
+      onclick="downloadQR(event)"
+    >
+      <i class="fa-solid fa-download"></i>
+      Download QR
+    </a>
+
+
+    <input
+      id="depositAmount"
+      class="input"
+      type="number"
+      min="1"
+      placeholder="Amount ₹"
+    >
+
+    <input
+      id="depositUTR"
+      class="input"
+      placeholder="UTR / Transaction ID"
+    >
+
+    <button
+      class="btn"
+      onclick="submitDeposit()"
+    >
+      Submit Deposit Request
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     WITHDRAW MODAL
+===================================================== -->
+
+<div class="modal" id="withdrawModal">
+
+  <div class="modalBox">
+
+    <div class="modalHeader">
+
+      <h3>
+        Withdraw Money
+      </h3>
+
+      <button
+        class="close"
+        onclick="closeModal('withdrawModal')"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <div class="muted" style="margin-bottom:13px">
+      Minimum withdrawal amount: ₹100
+    </div>
+
+    <input
+      id="withdrawAmount"
+      class="input"
+      type="number"
+      min="100"
+      placeholder="Amount ₹"
+    >
+
+    <input
+      id="withdrawUPI"
+      class="input"
+      placeholder="Your UPI ID"
+    >
+
+    <button
+      class="btn"
+      onclick="submitWithdraw()"
+    >
+      Submit Withdrawal
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     USERNAME MODAL
+===================================================== -->
+
+<div class="modal" id="usernameModal">
+
+  <div class="modalBox">
+
+    <div class="modalHeader">
+
+      <h3>
+        Edit Username
+      </h3>
+
+      <button
+        class="close"
+        onclick="closeModal('usernameModal')"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <input
+      id="newUsername"
+      class="input"
+      placeholder="New username"
+    >
+
+    <button
+      class="btn"
+      onclick="saveUsername()"
+    >
+      Save Username
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     PASSWORD MODAL
+===================================================== -->
+
+<div class="modal" id="passwordModal">
+
+  <div class="modalBox">
+
+    <div class="modalHeader">
+
+      <h3>
+        Change Password
+      </h3>
+
+      <button
+        class="close"
+        onclick="closeModal('passwordModal')"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <div class="muted" style="margin-bottom:12px">
+      Enter a new password of at least 6 characters.
+    </div>
+
+    <input
+      id="newPassword"
+      class="input"
+      type="password"
+      placeholder="New password"
+    >
+
+    <button
+      class="btn"
+      onclick="changePassword()"
+    >
+      Update Password
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     SUPPORT MODAL
+===================================================== -->
+
+<div class="modal" id="supportModal">
+
+  <div class="modalBox">
+
+    <div class="modalHeader">
+
+      <h3>
+        Help & Support
+      </h3>
+
+      <button
+        class="close"
+        onclick="closeModal('supportModal')"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <textarea
+      id="supportIssue"
+      class="input"
+      placeholder="Describe your issue..."
+    ></textarea>
+
+    <button
+      class="btn"
+      onclick="submitSupport()"
+    >
+      Submit Ticket
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     ROOM MODAL
+===================================================== -->
+
+<div class="modal" id="roomModal">
+
+  <div class="modalBox">
+
+    <div class="modalHeader">
+
+      <h3>
+        Room Details
+      </h3>
+
+      <button
+        class="close"
+        onclick="closeModal('roomModal')"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <div class="roomBox">
+
+      <div class="roomRow">
+        <span>Room ID</span>
+        <b id="roomIdText">Not available</b>
+      </div>
+
+      <div class="roomRow">
+        <span>Password</span>
+        <b id="roomPasswordText">Not available</b>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     CONFIRM MODAL
+===================================================== -->
+
+<div class="modal" id="confirmModal">
+
+  <div class="modalBox">
+
+    <div class="modalHeader">
+
+      <h3>
+        Confirm
+      </h3>
+
+      <button
+        class="close"
+        onclick="closeModal('confirmModal')"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <div
+      id="confirmText"
+      class="muted"
+      style="line-height:1.6;margin-bottom:15px"
+    ></div>
+
+    <div
+      style="display:grid;grid-template-columns:1fr 1fr;gap:8px"
+    >
+
+      <button
+        class="btn secondary"
+        onclick="closeModal('confirmModal')"
+      >
+        Cancel
+      </button>
+
+      <button
+        class="btn"
+        onclick="confirmYes()"
+      >
+        Confirm
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div id="toast"></div>
+
+
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
+
+<script type="module">
+
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+  updateProfile,
+  updatePassword
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+
+import {
+  getFirestore,
+  collection,
+  doc,
+  getDoc,
+  setDoc,
+  addDoc,
+  updateDoc,
+  query,
+  orderBy,
+  onSnapshot,
+  runTransaction,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+
+/* 🔴🔴🔴 FIREBASE CONFIG START 🔴🔴🔴
+   YAHI FIREBASE SE PASTE KIYA GAYA CONFIG HAI.
+*/
+
+const firebaseConfig = {
+  apiKey: "AIzaSyADFNTi3Tct_vNrH4_gq-mdfCBK1B98xfM",
+  authDomain: "crazy-esports-5d42b.firebaseapp.com",
+  databaseURL: "https://crazy-esports-5d42b-default-rtdb.firebaseio.com",
+  projectId: "crazy-esports-5d42b",
+  storageBucket: "crazy-esports-5d42b.firebasestorage.app",
+  messagingSenderId: "650811757226",
+  appId: "1:650811757226:web:1a336310a46345bd8df6d3"
+};
+
+
+/* 🔴🔴🔴 FIREBASE CONFIG END 🔴🔴🔴 */
+
+
+const firebaseApp =
+  initializeApp(firebaseConfig);
+
+const auth =
+  getAuth(firebaseApp);
+
+const db =
+  getFirestore(firebaseApp);
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+let currentUser = null;
+let profile = {};
+
+let tournaments = [];
+let matches = [];
+
+let payment = {
+  adminUpi:"",
+  qrCodeUrl:""
+};
+
+let unsubscribers = [];
+
+
+/* =====================================================
+   UTILITY
+===================================================== */
+
+function $(id){
+  return document.getElementById(id);
+}
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+function money(value){
+
+  return Number(value || 0)
+    .toLocaleString("en-IN");
+
+}
+
+function toast(message){
+
+  const el = $("toast");
+
+  el.textContent = message;
+
+  el.classList.add("show");
+
+  clearTimeout(window.toastTimer);
+
+  window.toastTimer =
+    setTimeout(()=>{
+      el.classList.remove("show");
+    },2700);
+
+}
+
+function openModal(id){
+  $(id).classList.add("show");
+}
+
+function closeModal(id){
+  $(id).classList.remove("show");
+}
+
+window.closeModal = closeModal;
+
+
+function formatDate(date){
+
+  if(!date)
+    return "Date not set";
+
+  try{
+
+    return new Date(
+      date+"T00:00:00"
+    ).toLocaleDateString(
+      "en-IN",
+      {
+        day:"2-digit",
+        month:"short",
+        year:"numeric"
+      }
+    );
+
+  }catch{
+    return date;
+  }
+
+}
+
+
+function formatTimestamp(ts){
+
+  if(!ts)
+    return "Just now";
+
+  try{
+
+    const d =
+      ts.toDate
+      ? ts.toDate()
+      : new Date(ts);
+
+    return d.toLocaleString(
+      "en-IN",
+      {
+        day:"2-digit",
+        month:"short",
+        hour:"2-digit",
+        minute:"2-digit"
+      }
+    );
+
+  }catch{
+    return "";
+  }
+
+}
+
+
+function authError(error){
+
+  const map = {
+
+    "auth/invalid-credential":
+      "Invalid email or password.",
+
+    "auth/invalid-email":
+      "Invalid email address.",
+
+    "auth/email-already-in-use":
+      "This email is already registered.",
+
+    "auth/weak-password":
+      "Password must be at least 6 characters.",
+
+    "auth/network-request-failed":
+      "Network error. Check internet.",
+
+    "auth/too-many-requests":
+      "Too many attempts. Try later.",
+
+    "auth/unauthorized-domain":
+      "This website domain is not authorized in Firebase.",
+
+    "auth/operation-not-allowed":
+      "Email/Password login is disabled in Firebase.",
+
+    "auth/configuration-not-found":
+      "Firebase Authentication configuration not found."
+
+  };
+
+  return map[error.code]
+    || error.message
+    || "Something went wrong.";
+
+}
+
+
+/* =====================================================
+   AUTH MODE
+===================================================== */
+
+let signupMode = false;
+
+
+window.toggleAuth = function(){
+
+  signupMode =
+    !signupMode;
+
+  $("signupFields")
+    .classList
+    .toggle(
+      "hidden",
+      !signupMode
+    );
+
+  $("authSub").textContent =
+    signupMode
+    ? "Create your Crazy eSports account"
+    : "Login to continue";
+
+  $("authButton").textContent =
+    signupMode
+    ? "Create Account"
+    : "Login";
+
+  $("switchText").textContent =
+    signupMode
+    ? "Already have an account?"
+    : "New user?";
+
+  $("switchButton").textContent =
+    signupMode
+    ? " Login"
+    : " Create account";
+
+};
+
+
+/* =====================================================
+   LOGIN / SIGNUP
+===================================================== */
+
+window.submitAuth = async function(){
+
+  const email =
+    $("authEmail")
+      .value
+      .trim();
+
+  const password =
+    $("authPassword")
+      .value;
+
+  const button = $("authButton");
+  const status = $("authStatus");
+
+  if(!email || !password){
+
+    toast("Enter email and password.");
+    if(status) status.textContent = "Enter email and password.";
+
+    return;
+  }
+
+  button.disabled = true;
+  button.style.opacity = "0.65";
+  button.textContent = signupMode ? "Creating..." : "Logging in...";
+  if(status) status.textContent = "Connecting to Firebase...";
+
+
+  try{
+
+    if(signupMode){
+
+      const username =
+        $("signupUsername")
+          .value
+          .trim();
+
+      if(!username){
+
+        toast("Enter username.");
+
+        return;
+      }
+
+      if(password.length < 6){
+
+        toast(
+          "Password must be at least 6 characters."
+        );
+
+        return;
+      }
+
+
+      const result =
+        await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+
+      await updateProfile(
+        result.user,
+        {
+          displayName:username
+        }
+      );
+
+
+      await setDoc(
+        doc(
+          db,
+          "users",
+          result.user.uid
+        ),
+        {
+          username,
+          email,
+          balance:0,
+          createdAt:serverTimestamp()
+        },
+        {
+          merge:true
+        }
+      );
+
+
+      toast("Account created successfully.");
+
+    }else{
+
+      await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+    }
+
+  }catch(error){
+
+    console.error("Crazy eSports Auth Error:", error);
+
+    const message = authError(error);
+    toast(message);
+    if(status) status.textContent = message;
+
+  }finally{
+
+    button.disabled = false;
+    button.style.opacity = "1";
+    button.textContent = signupMode ? "Create Account" : "Login";
+
+  }
+
+};
+
+
+/* =====================================================
+   AUTH BUTTON HANDLER
+===================================================== */
+
+$("authButton").addEventListener("click",()=>{
+
+  if(typeof window.submitAuth === "function"){
+    window.submitAuth();
+    return;
+  }
+
+  const status = $("authStatus");
+  if(status) status.textContent =
+    "Firebase script did not load. Refresh the page.";
+
+});
+
+$("authStatus").textContent = "Firebase ready. Enter your details.";
+
+
+/* =====================================================
+   AUTH STATE
+===================================================== */
+
+onAuthStateChanged(
+  auth,
+  async user=>{
+
+    if(!user){
+
+      currentUser=null;
+
+      $("authScreen")
+        .classList
+        .remove("hidden");
+
+      $("app")
+        .classList
+        .add("hidden");
+
+      stopRealtime();
+
+      return;
+    }
+
+
+    currentUser =
+      user;
+
+
+    try{
+
+      const ref =
+        doc(
+          db,
+          "users",
+          user.uid
+        );
+
+      const snap =
+        await getDoc(ref);
+
+
+      if(!snap.exists()){
+
+        await setDoc(
+          ref,
+          {
+            username:
+              user.displayName
+              || "Player",
+
+            email:
+              user.email || "",
+
+            balance:0,
+
+            createdAt:
+              serverTimestamp()
+          }
+        );
+
+      }
+
+
+      $("authScreen")
+        .classList
+        .add("hidden");
+
+      $("app")
+        .classList
+        .remove("hidden");
+
+
+      startRealtime();
+
+
+    }catch(error){
+
+      console.error(error);
+
+      toast(
+        "Unable to load your profile."
+      );
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   STOP REALTIME
+===================================================== */
+
+function stopRealtime(){
+
+  unsubscribers.forEach(
+    fn=>{
+      try{
+        fn();
+      }catch{}
+    }
+  );
+
+  unsubscribers=[];
+
+}
+
+
+/* =====================================================
+   START REALTIME
+===================================================== */
+
+function startRealtime(){
+
+  stopRealtime();
+
+  if(!currentUser)
+    return;
+
+
+  /* USER PROFILE */
+
+  unsubscribers.push(
+
+    onSnapshot(
+      doc(
+        db,
+        "users",
+        currentUser.uid
+      ),
+
+      snap=>{
+
+        if(!snap.exists())
+          return;
+
+        profile =
+          snap.data();
+
+        updateProfileUI();
+
+      },
+
+      error=>{
+        console.error(error);
+      }
+
+    )
+
+  );
+
+
+  /* TOURNAMENTS */
+
+  unsubscribers.push(
+
+    onSnapshot(
+      collection(
+        db,
+        "tournaments"
+      ),
+
+      snap=>{
+
+        tournaments=[];
+
+        snap.forEach(d=>{
+
+          tournaments.push({
+            id:d.id,
+            ...d.data()
+          });
+
+        });
+
+
+        tournaments.sort(
+          (a,b)=>{
+
+            const aa =
+              `${a.date||"9999-99-99"} ${a.time||"99:99"}`;
+
+            const bb =
+              `${b.date||"9999-99-99"} ${b.time||"99:99"}`;
+
+            return aa.localeCompare(bb);
+
+          }
+        );
+
+
+        renderTournaments();
+
+      },
+
+      error=>{
+
+        console.error(error);
+
+        $("tournamentList").innerHTML =
+          `<div class="empty">
+            Unable to load tournaments.
+          </div>`;
+
+      }
+
+    )
+
+  );
+
+
+  /* MY MATCHES */
+
+  unsubscribers.push(
+
+    onSnapshot(
+
+      query(
+        collection(
+          db,
+          "users",
+          currentUser.uid,
+          "my_matches"
+        ),
+        orderBy(
+          "joinedAt",
+          "desc"
+        )
+      ),
+
+      snap=>{
+
+        matches=[];
+
+        snap.forEach(d=>{
+
+          matches.push({
+            id:d.id,
+            ...d.data()
+          });
+
+        });
+
+        renderMatches();
+        renderTournaments();
+
+      },
+
+      error=>{
+
+        console.error(error);
+
+        $("matchesList").innerHTML =
+          `<div class="empty">
+            No matches found.
+          </div>`;
+
+      }
+
+    )
+
+  );
+
+
+  /* TRANSACTIONS */
+
+  unsubscribers.push(
+
+    onSnapshot(
+
+      query(
+        collection(
+          db,
+          "users",
+          currentUser.uid,
+          "transactions"
+        ),
+        orderBy(
+          "date",
+          "desc"
+        )
+      ),
+
+      snap=>{
+
+        const list=[];
+
+        snap.forEach(d=>{
+
+          list.push({
+            id:d.id,
+            ...d.data()
+          });
+
+        });
+
+        renderTransactions(list);
+
+      },
+
+      error=>{
+
+        console.error(error);
+
+        $("transactionList").innerHTML =
+          `<div class="empty">
+            No transactions yet.
+          </div>`;
+
+      }
+
+    )
+
+  );
+
+
+  loadPayment();
+
+}
+
+
+/* =====================================================
+   PROFILE UI
+===================================================== */
+
+function updateProfileUI(){
+
+  const username =
+    profile.username
+    || currentUser.displayName
+    || "Player";
+
+  const balance =
+    Number(profile.balance || 0);
+
+
+  $("headerUsername").textContent =
+    username;
+
+  $("headerBalance").textContent =
+    money(balance);
+
+  $("profileName").textContent =
+    username;
+
+  $("profileEmail").textContent =
+    currentUser.email
+    || profile.email
+    || "";
+
+
+  $("profileAvatar").src =
+    "https://ui-avatars.com/api/?name="+
+    encodeURIComponent(username)+
+    "&background=695cff&color=fff&bold=true";
+
+}
+
+
+/* =====================================================
+   PAGE NAVIGATION
+===================================================== */
+
+window.goPage = function(page,button){
+
+  document.querySelectorAll(".page")
+    .forEach(p=>{
+      p.classList.remove("active");
+    });
+
+
+  $(page+"Page")
+    .classList
+    .add("active");
+
+
+  document.querySelectorAll(".navBtn")
+    .forEach(b=>{
+      b.classList.remove("active");
+    });
+
+
+  if(button)
+    button.classList.add("active");
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+};
+
+
+/* =====================================================
+   PAYMENT SETTINGS
+===================================================== */
+
+const DEFAULT_QR_URL =
+"https://i.ibb.co/ymjRPmpg/file-00000000f61081f8a1bbec83be8521ad.png";
+
+
+async function loadPayment(){
+
+  try{
+
+    const snap =
+      await getDoc(
+        doc(
+          db,
+          "settings",
+          "payment"
+        )
+      );
+
+
+    if(snap.exists()){
+
+      const data =
+        snap.data();
+
+      payment.adminUpi =
+        data.adminUpi || "";
+
+      payment.qrCodeUrl =
+        data.qrCodeUrl
+        || DEFAULT_QR_URL;
+
+    }else{
+
+      payment.qrCodeUrl =
+        DEFAULT_QR_URL;
+
+    }
+
+
+    $("adminUpi").textContent =
+      payment.adminUpi
+      || "Not configured";
+
+    $("paymentQR").src =
+      payment.qrCodeUrl;
+
+    $("downloadQRBtn").dataset.url =
+      payment.qrCodeUrl;
+
+  }catch(error){
+
+    console.error(error);
+
+    $("adminUpi").textContent =
+      "Not configured";
+
+    $("paymentQR").src =
+      DEFAULT_QR_URL;
+
+    $("downloadQRBtn").dataset.url =
+      DEFAULT_QR_URL;
+
+  }
+
+}
+
+
+/* =====================================================
+   🔴 NEW: QR DOWNLOAD
+===================================================== */
+
+window.downloadQR = async function(event){
+
+  event.preventDefault();
+
+  const url =
+    $("downloadQRBtn").dataset.url
+    || payment.qrCodeUrl
+    || DEFAULT_QR_URL;
+
+
+  if(!url){
+
+    toast("QR code not available.");
+
+    return;
+  }
+
+
+  try{
+
+    const response =
+      await fetch(url);
+
+    if(!response.ok)
+      throw new Error("Download failed");
+
+
+    const blob =
+      await response.blob();
+
+
+    const objectUrl =
+      URL.createObjectURL(blob);
+
+
+    const a =
+      document.createElement("a");
+
+    a.href =
+      objectUrl;
+
+    a.download =
+      "crazy-esports-payment-qr.png";
+
+    document.body.appendChild(a);
+
+    a.click();
+
+    a.remove();
+
+    setTimeout(()=>{
+      URL.revokeObjectURL(objectUrl);
+    },1000);
+
+
+    toast("QR download started.");
+
+  }catch(error){
+
+    console.error(error);
+
+    /*
+      Some image hosts block direct downloads.
+      In that case open the QR image.
+    */
+
+    window.open(
+      url,
+      "_blank"
+    );
+
+    toast(
+      "QR opened. Long press image to save."
+    );
+
+  }
+
+};
+
+
+/* =====================================================
+   TOURNAMENT RENDER
+===================================================== */
+
+function renderTournaments(){
+
+  const box =
+    $("tournamentList");
+
+
+  if(!tournaments.length){
+
+    box.innerHTML =
+      `<div class="empty">
+        No upcoming tournaments.
+      </div>`;
+
+    return;
+  }
+
+
+  box.innerHTML =
+    tournaments.map(t=>{
+
+      const filled =
+        Number(t.filled || 0);
+
+      const total =
+        Number(t.total || 0);
+
+      const joined =
+        matches.some(
+          m=>m.matchId===t.id
+        );
+
+      const full =
+        total > 0 &&
+        filled >= total;
+
+
+      return `
+
+      <div class="card">
+
+        ${
+          t.image
+          ? `
+          <img
+            class="tournamentImage"
+            src="${escapeHtml(t.image)}"
+            onerror="this.style.display='none'"
+          >
+          `
+          : ""
+        }
+
+
+        <div class="tournamentTitle">
+          ${escapeHtml(
+            t.title || "Tournament"
+          )}
+        </div>
+
+
+        <div class="metaGrid">
+
+          <!-- 🔴 NEW: DATE -->
+
+          <div class="meta">
+            <span>Date</span>
+            <b>
+              ${escapeHtml(
+                formatDate(t.date)
+              )}
+            </b>
+          </div>
+
+
+          <!-- 🔴 NEW: TIME -->
+
+          <div class="meta">
+            <span>Time</span>
+            <b>
+              ${escapeHtml(
+                t.time || "Not set"
+              )}
+            </b>
+          </div>
+
+
+          <div class="meta">
+            <span>Entry Fee</span>
+            <b>
+              ₹${money(t.fee)}
+            </b>
+          </div>
+
+
+          <div class="meta">
+            <span>Prize Pool</span>
+            <b>
+              ₹${money(t.pool)}
+            </b>
+          </div>
+
+
+          <div class="meta">
+            <span>Players</span>
+            <b>
+              ${filled}/${total}
+            </b>
+          </div>
+
+
+          <div class="meta">
+            <span>Room</span>
+            <b>
+              ${t.roomId
+                ? "Available"
+                : "Later"}
+            </b>
+          </div>
+
+        </div>
+
+
+        ${
+          joined
+          ? `
+          <button
+            class="joinBtn joined"
+            disabled
+          >
+            <i class="fa-solid fa-check"></i>
+            Already Joined
+          </button>
+          `
+          :
+          full
+          ? `
+          <button
+            class="joinBtn full"
+            disabled
+          >
+            Tournament Full
+          </button>
+          `
+          :
+          `
+          <button
+            class="joinBtn"
+            onclick="joinTournament('${t.id}')"
+          >
+            <i class="fa-solid fa-gamepad"></i>
+            Join Tournament
+          </button>
+          `
+        }
+
+      </div>
+
+      `;
+
+    }).join("");
+
+}
+
+
+/* =====================================================
+   JOIN TOURNAMENT
+===================================================== */
+
+window.joinTournament =
+async function(tournamentId){
+
+  if(!currentUser)
+    return;
+
+
+  const tournament =
+    tournaments.find(
+      t=>t.id===tournamentId
+    );
+
+
+  if(!tournament){
+
+    toast("Tournament not found.");
+
+    return;
+  }
+
+
+  const alreadyJoined =
+    matches.some(
+      m=>m.matchId===tournamentId
+    );
+
+
+  if(alreadyJoined){
+
+    toast("You already joined.");
+
+    return;
+  }
+
+
+  try{
+
+    const userRef =
+      doc(
+        db,
+        "users",
+        currentUser.uid
+      );
+
+
+    const tournamentRef =
+      doc(
+        db,
+        "tournaments",
+        tournamentId
+      );
+
+
+    const matchRef =
+      doc(
+        db,
+        "users",
+        currentUser.uid,
+        "my_matches",
+        tournamentId
+      );
+
+
+    const txRef =
+      doc(
+        collection(
+          db,
+          "users",
+          currentUser.uid,
+          "transactions"
+        )
+      );
+
+
+    await runTransaction(
+      db,
+      async tx=>{
+
+        const userSnap =
+          await tx.get(userRef);
+
+        const tournamentSnap =
+          await tx.get(tournamentRef);
+
+        const matchSnap =
+          await tx.get(matchRef);
+
+
+        if(!userSnap.exists())
+          throw new Error(
+            "User profile not found."
+          );
+
+
+        if(!tournamentSnap.exists())
+          throw new Error(
+            "Tournament not found."
+          );
+
+
+        if(matchSnap.exists())
+          throw new Error(
+            "You already joined this tournament."
+          );
+
+
+        const userData =
+          userSnap.data();
+
+        const tData =
+          tournamentSnap.data();
+
+
+        const balance =
+          Number(
+            userData.balance || 0
+          );
+
+        const fee =
+          Number(
+            tData.fee || 0
+          );
+
+        const filled =
+          Number(
+            tData.filled || 0
+          );
+
+        const total =
+          Number(
+            tData.total || 0
+          );
+
+
+        if(balance < fee)
+          throw new Error(
+            "Insufficient balance."
+          );
+
+
+        if(
+          total > 0 &&
+          filled >= total
+        )
+          throw new Error(
+            "Tournament is full."
+          );
+
+
+        tx.update(
+          userRef,
+          {
+            balance:
+              balance-fee,
+
+            lastJoinedTournamentId:
+              tournamentId
+          }
+        );
+
+
+        tx.update(
+          tournamentRef,
+          {
+            filled:
+              filled+1
+          }
+        );
+
+
+        tx.set(
+          matchRef,
+          {
+            matchId:
+              tournamentId,
+
+            title:
+              tData.title || "Tournament",
+
+            matchDate:
+              tData.date || "",
+
+            matchTime:
+              tData.time || "",
+
+            roomId:
+              tData.roomId || "",
+
+            password:
+              tData.password || "",
+
+            joinedAt:
+              serverTimestamp()
+          }
+        );
+
+
+        tx.set(
+          txRef,
+          {
+            title:
+              "Joined - "+
+              (tData.title || "Tournament"),
+
+            amount:
+              fee,
+
+            type:
+              "debit",
+
+            date:
+              serverTimestamp(),
+
+            matchId:
+              tournamentId
+          }
+        );
+
+      }
+    );
+
+
+    toast(
+      "Tournament joined successfully! 🎮"
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      error.message ||
+      "Unable to join tournament."
+    );
+
+  }
+
+};
+
+
+/* =====================================================
+   MATCHES
+===================================================== */
+
+function renderMatches(){
+
+  const box =
+    $("matchesList");
+
+
+  if(!matches.length){
+
+    box.innerHTML =
+      `<div class="empty">
+        You haven't joined any tournament yet.
+      </div>`;
+
+    return;
+  }
+
+
+  box.innerHTML =
+    matches.map(m=>{
+
+      const roomReady =
+        m.roomId &&
+        m.password;
+
+
+      return `
+
+      <div class="card">
+
+        <div class="row">
+
+          <div>
+
+            <div class="matchTitle">
+              ${escapeHtml(
+                m.title || "Tournament"
+              )}
+            </div>
+
+            <span class="badge">
+              ${escapeHtml(
+                formatDate(m.matchDate)
+              )}
+            </span>
+
+            <span class="badge">
+              ${escapeHtml(
+                m.matchTime || "Time not set"
+              )}
+            </span>
+
+          </div>
+
+          <span
+            class="badge"
+            style="color:#69e99a"
+          >
+            JOINED
+          </span>
+
+        </div>
+
+
+        ${
+          roomReady
+          ? `
+
+          <div class="roomBox">
+
+            <div class="roomRow">
+              <span>Room ID</span>
+              <b>
+                ${escapeHtml(m.roomId)}
+              </b>
+            </div>
+
+            <div class="roomRow">
+              <span>Password</span>
+              <b>
+                ${escapeHtml(m.password)}
+              </b>
+            </div>
+
+          </div>
+
+          `
+          :
+          `
+
+          <div class="roomWaiting">
+            <i class="fa-solid fa-clock"></i>
+            Room ID & Password will be shared by admin.
+          </div>
+
+          `
+        }
+
+
+        <button
+          class="joinBtn"
+          style="background:#20242d"
+          onclick="showRoom('${m.id}')"
+        >
+          <i class="fa-solid fa-key"></i>
+          View Room Details
+        </button>
+
+      </div>
+
+      `;
+
+    }).join("");
+
+}
+
+
+/* =====================================================
+   ROOM MODAL
+===================================================== */
+
+window.showRoom = function(id){
+
+  const m =
+    matches.find(
+      x=>x.id===id
+    );
+
+
+  if(!m){
+
+    toast("Match not found.");
+
+    return;
+  }
+
+
+  $("roomIdText").textContent =
+    m.roomId || "Not available";
+
+  $("roomPasswordText").textContent =
+    m.password || "Not available";
+
+
+  openModal("roomModal");
+
+};
+
+
+/* =====================================================
+   TRANSACTIONS
+===================================================== */
+
+function renderTransactions(list){
+
+  const box =
+    $("transactionList");
+
+
+  if(!list.length){
+
+    box.innerHTML =
+      `<div class="empty">
+        No transactions yet.
+      </div>`;
+
+    return;
+  }
+
+
+  box.innerHTML =
+    list.map(t=>{
+
+      const isCredit =
+        t.type==="credit";
+
+
+      return `
+
+      <div class="tx">
+
+        <div class="txLeft">
+
+          <div class="txIcon ${
+            isCredit
+            ? "credit"
+            : "debit"
+          }">
+
+            <i class="fa-solid ${
+              isCredit
+              ? "fa-arrow-down"
+              : "fa-arrow-up"
+            }"></i>
+
+          </div>
+
+
+          <div class="txInfo">
+
+            <div class="txTitle">
+              ${escapeHtml(
+                t.title || "Transaction"
+              )}
+            </div>
+
+            <div class="txDate">
+              ${formatTimestamp(t.date)}
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="${
+            isCredit
+            ? "credit"
+            : "debit"
+          }"
+          style="font-weight:800;font-size:13px"
+        >
+          ${isCredit ? "+" : "-"}₹${money(t.amount)}
+        </div>
+
+      </div>
+
+      `;
+
+    }).join("");
+
+}
+
+
+/* =====================================================
+   DEPOSIT
+===================================================== */
+
+window.openDeposit = function(){
+
+  $("depositAmount").value="";
+  $("depositUTR").value="";
+
+  openModal("depositModal");
+
+};
+
+
+window.submitDeposit =
+async function(){
+
+  if(!currentUser)
+    return;
+
+
+  const amount =
+    Number(
+      $("depositAmount").value
+    );
+
+  const utr =
+    $("depositUTR")
+      .value
+      .trim();
+
+
+  if(amount <= 0){
+
+    toast("Enter valid amount.");
+
+    return;
+  }
+
+
+  if(!utr){
+
+    toast("Enter UTR number.");
+
+    return;
+  }
+
+
+  try{
+
+    await addDoc(
+      collection(
+        db,
+        "wallet_requests"
+      ),
+      {
+        userId:
+          currentUser.uid,
+
+        username:
+          profile.username
+          || currentUser.displayName
+          || "Player",
+
+        email:
+          currentUser.email || "",
+
+        type:
+          "deposit",
+
+        amount,
+
+        utr,
+
+        status:
+          "pending",
+
+        timestamp:
+          serverTimestamp()
+      }
+    );
+
+
+    closeModal("depositModal");
+
+    toast(
+      "Deposit request submitted."
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      "Unable to submit deposit."
+    );
+
+  }
+
+};
+
+
+/* =====================================================
+   WITHDRAW
+===================================================== */
+
+window.openWithdraw = function(){
+
+  $("withdrawAmount").value="";
+  $("withdrawUPI").value="";
+
+  openModal("withdrawModal");
+
+};
+
+
+window.submitWithdraw =
+async function(){
+
+  if(!currentUser)
+    return;
+
+
+  const amount =
+    Number(
+      $("withdrawAmount").value
+    );
+
+  const upi =
+    $("withdrawUPI")
+      .value
+      .trim();
+
+
+  if(amount < 100){
+
+    toast(
+      "Minimum withdrawal is ₹100."
+    );
+
+    return;
+  }
+
+
+  if(!upi){
+
+    toast("Enter your UPI ID.");
+
+    return;
+  }
+
+
+  try{
+
+    const userRef =
+      doc(
+        db,
+        "users",
+        currentUser.uid
+      );
+
+
+    const requestRef =
+      doc(
+        collection(
+          db,
+          "wallet_requests"
+        )
+      );
+
+
+    const transactionRef =
+      doc(
+        collection(
+          db,
+          "users",
+          currentUser.uid,
+          "transactions"
+        )
+      );
+
+
+    await runTransaction(
+      db,
+      async tx=>{
+
+        const userSnap =
+          await tx.get(userRef);
+
+
+        if(!userSnap.exists())
+          throw new Error(
+            "User profile not found."
+          );
+
+
+        const userData =
+          userSnap.data();
+
+
+        const balance =
+          Number(
+            userData.balance || 0
+          );
+
+
+        if(balance < amount)
+          throw new Error(
+            "Insufficient balance."
+          );
+
+
+        tx.update(
+          userRef,
+          {
+            balance:
+              balance-amount,
+
+            lastWalletRequestId:
+              requestRef.id
+          }
+        );
+
+
+        tx.set(
+          requestRef,
+          {
+            userId:
+              currentUser.uid,
+
+            username:
+              profile.username
+              || currentUser.displayName
+              || "Player",
+
+            email:
+              currentUser.email || "",
+
+            type:
+              "withdraw",
+
+            amount,
+
+            userUpi:
+              upi,
+
+            status:
+              "pending",
+
+            timestamp:
+              serverTimestamp()
+          }
+        );
+
+
+        tx.set(
+          transactionRef,
+          {
+            title:
+              "Withdrawal Requested",
+
+            amount,
+
+            type:
+              "debit",
+
+            date:
+              serverTimestamp()
+          }
+        );
+
+      }
+    );
+
+
+    closeModal("withdrawModal");
+
+    toast(
+      "Withdrawal request submitted."
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      error.message ||
+      "Unable to submit withdrawal."
+    );
+
+  }
+
+};
+
+
+/* =====================================================
+   🔴 NEW: GIFT CODE REDEEM
+===================================================== */
+
+window.redeemGiftCode =
+async function(){
+
+  if(!currentUser)
+    return;
+
+
+  const code =
+    $("giftCodeInput")
+      .value
+      .trim()
+      .toUpperCase()
+      .replace(/\s+/g,"");
+
+
+  if(!code){
+
+    toast("Enter gift code.");
+
+    return;
+  }
+
+
+  try{
+
+    const giftRef =
+      doc(
+        db,
+        "gift_codes",
+        code
+      );
+
+
+    const redemptionRef =
+      doc(
+        db,
+        "gift_codes",
+        code,
+        "redemptions",
+        currentUser.uid
+      );
+
+
+    const userRef =
+      doc(
+        db,
+        "users",
+        currentUser.uid
+      );
+
+
+    const transactionRef =
+      doc(
+        collection(
+          db,
+          "users",
+          currentUser.uid,
+          "transactions"
+        )
+      );
+
+
+    await runTransaction(
+      db,
+      async tx=>{
+
+        const giftSnap =
+          await tx.get(giftRef);
+
+        const redemptionSnap =
+          await tx.get(redemptionRef);
+
+        const userSnap =
+          await tx.get(userRef);
+
+
+        if(!giftSnap.exists())
+          throw new Error(
+            "Invalid gift code."
+          );
+
+
+        if(redemptionSnap.exists())
+          throw new Error(
+            "You have already used this code."
+          );
+
+
+        if(!userSnap.exists())
+          throw new Error(
+            "User profile not found."
+          );
+
+
+        const gift =
+          giftSnap.data();
+
+
+        if(gift.active !== true)
+          throw new Error(
+            "This gift code is disabled."
+          );
+
+
+        const used =
+          Number(
+            gift.used || 0
+          );
+
+        const maxUses =
+          Number(
+            gift.maxUses || 0
+          );
+
+
+        if(
+          maxUses > 0 &&
+          used >= maxUses
+        )
+          throw new Error(
+            "This gift code has reached its limit."
+          );
+
+
+        if(gift.expiresAt){
+
+          const expiry =
+            gift.expiresAt.toDate();
+
+          if(
+            new Date() > expiry
+          )
+            throw new Error(
+              "This gift code has expired."
+            );
+
+        }
+
+
+        const amount =
+          Number(
+            gift.amount || 0
+          );
+
+
+        if(amount <= 0)
+          throw new Error(
+            "Invalid gift code reward."
+          );
+
+
+        const userData =
+          userSnap.data();
+
+
+        const balance =
+          Number(
+            userData.balance || 0
+          );
+
+
+        /* ADD REWARD */
+
+        tx.update(
+          userRef,
+          {
+            balance:
+              balance+amount,
+
+            lastGiftCode:
+              code
+          }
+        );
+
+
+        /* INCREASE USE COUNT */
+
+        tx.update(
+          giftRef,
+          {
+            used:
+              used+1
+          }
+        );
+
+
+        /* SAVE REDEMPTION */
+
+        tx.set(
+          redemptionRef,
+          {
+            userId:
+              currentUser.uid,
+
+            code,
+
+            amount,
+
+            createdAt:
+              serverTimestamp()
+          }
+        );
+
+
+        /* TRANSACTION HISTORY */
+
+        tx.set(
+          transactionRef,
+          {
+            title:
+              "Gift Code - "+code,
+
+            amount,
+
+            type:
+              "credit",
+
+            code,
+
+            date:
+              serverTimestamp()
+          }
+        );
+
+      }
+    );
+
+
+    $("giftCodeInput").value="";
+
+    toast(
+      "🎁 Gift code redeemed! Balance added."
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      error.message ||
+      "Unable to redeem gift code."
+    );
+
+  }
+
+};
+
+
+/* =====================================================
+   USERNAME
+===================================================== */
+
+window.openUsernameModal =
+function(){
+
+  $("newUsername").value =
+    profile.username
+    || currentUser.displayName
+    || "";
+
+  openModal("usernameModal");
+
+};
+
+
+window.saveUsername =
+async function(){
+
+  const username =
+    $("newUsername")
+      .value
+      .trim();
+
+
+  if(!username){
+
+    toast("Enter username.");
+
+    return;
+  }
+
+
+  if(username.length < 3){
+
+    toast(
+      "Username must have at least 3 characters."
+    );
+
+    return;
+  }
+
+
+  try{
+
+    await updateDoc(
+      doc(
+        db,
+        "users",
+        currentUser.uid
+      ),
+      {
+        username
+      }
+    );
+
+
+    await updateProfile(
+      currentUser,
+      {
+        displayName:
+          username
+      }
+    );
+
+
+    closeModal("usernameModal");
+
+    toast("Username updated.");
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      "Unable to update username."
+    );
+
+  }
+
+};
+
+
+/* =====================================================
+   PASSWORD
+===================================================== */
+
+window.openPasswordModal =
+function(){
+
+  $("newPassword").value="";
+
+  openModal("passwordModal");
+
+};
+
+
+window.changePassword =
+async function(){
+
+  const password =
+    $("newPassword")
+      .value;
+
+
+  if(password.length < 6){
+
+    toast(
+      "Password must be at least 6 characters."
+    );
+
+    return;
+  }
+
+
+  try{
+
+    await updatePassword(
+      currentUser,
+      password
+    );
+
+
+    closeModal("passwordModal");
+
+    toast(
+      "Password changed successfully."
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    if(
+      error.code ===
+      "auth/requires-recent-login"
+    ){
+
+      toast(
+        "Please logout and login again before changing password."
+      );
+
+    }else{
+
+      toast(
+        error.message ||
+        "Unable to change password."
+      );
+
+    }
+
+  }
+
+};
+
+
+/* =====================================================
+   SUPPORT
+===================================================== */
+
+window.openSupportModal =
+function(){
+
+  $("supportIssue").value="";
+
+  openModal("supportModal");
+
+};
+
+
+window.submitSupport =
+async function(){
+
+  const issue =
+    $("supportIssue")
+      .value
+      .trim();
+
+
+  if(!issue){
+
+    toast("Describe your issue.");
+
+    return;
+  }
+
+
+  try{
+
+    await addDoc(
+      collection(
+        db,
+        "support_tickets"
+      ),
+      {
+        userId:
+          currentUser.uid,
+
+        email:
+          currentUser.email || "",
+
+        issue,
+
+        status:
+          "open",
+
+        date:
+          serverTimestamp()
+      }
+    );
+
+
+    closeModal("supportModal");
+
+    toast(
+      "Support ticket submitted."
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      "Unable to submit ticket."
+    );
+
+  }
+
+};
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+window.logout =
+async function(){
+
+  try{
+
+    await signOut(auth);
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      "Unable to logout."
+    );
+
+  }
+
+};
+
+
+/* =====================================================
+   CONFIRM SYSTEM
+===================================================== */
+
+let confirmFunction = null;
+
+window.openConfirm =
+function(message,callback){
+
+  $("confirmText").textContent =
+    message;
+
+  confirmFunction =
+    callback;
+
+  openModal("confirmModal");
+
+};
+
+
+window.confirmYes =
+async function(){
+
+  closeModal("confirmModal");
+
+  if(!confirmFunction)
+    return;
+
+  const fn =
+    confirmFunction;
+
+  confirmFunction=null;
+
+  try{
+
+    await fn();
+
+  }catch(error){
+
+    console.error(error);
+
+  }
+
+};
+
+
+/* =====================================================
+   ENTER KEY
+===================================================== */
+
+$("authPassword")
+  .addEventListener(
+    "keydown",
+    event=>{
+
+      if(event.key==="Enter"){
+        window.submitAuth();
+      }
+
+    }
+  );
+
+
+$("giftCodeInput")
+  .addEventListener(
+    "keydown",
+    event=>{
+
+      if(event.key==="Enter"){
+        redeemGiftCode();
+      }
+
+    }
+  );
+
+
+/* =====================================================
+   MODAL OUTSIDE CLICK
+===================================================== */
+
+document
+  .querySelectorAll(".modal")
+  .forEach(modal=>{
+
+    modal.addEventListener(
+      "click",
+      event=>{
+
+        if(event.target === modal){
+
+          modal.classList.remove("show");
+
+        }
+
+      }
+    );
+
+  });
+
+</script>
+
+</body>
+</html>
