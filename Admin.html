@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>Crazy eSports - Admin</title>
+<title>Crazy eSports - Admin Panel</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -13,3349 +13,1216 @@
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <style>
+
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    -webkit-tap-highlight-color:transparent;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 :root{
-    --bg:#08090d;
-    --card:#111319;
-    --card2:#171a21;
-    --border:#252a34;
-    --text:#fff;
-    --muted:#8d95a4;
-    --primary:#695cff;
-    --primary2:#8b5cf6;
-    --green:#20c77a;
-    --red:#ff4d5e;
-    --orange:#ffae42;
-}
-
-html,body{
-    min-height:100%;
-    background:var(--bg);
-    color:var(--text);
-    font-family:Inter,Arial,sans-serif;
+  --bg:#08090d;
+  --card:#111319;
+  --card2:#171a21;
+  --border:#282d38;
+  --primary:#695cff;
+  --primary2:#8b5cf6;
+  --green:#35d47c;
+  --red:#ff5967;
+  --orange:#ffae42;
+  --text:#ffffff;
+  --muted:#858c9b;
 }
 
 body{
-    padding-bottom:env(safe-area-inset-bottom);
+  font-family:Inter,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  padding-bottom:80px;
 }
 
-button,input,textarea,select{
-    font-family:inherit;
+button,
+input,
+textarea,
+select{
+  font-family:inherit;
 }
 
 button{
-    cursor:pointer;
+  cursor:pointer;
+  border:0;
 }
 
-/* ================= LOGIN ================= */
+.hidden{
+  display:none!important;
+}
+
+/* =====================================================
+   LOGIN
+===================================================== */
 
 #loginScreen{
-    min-height:100vh;
-    min-height:100dvh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-
-    background:
-    radial-gradient(circle at 50% 0,#21184a 0,#08090d 48%);
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:
+    radial-gradient(circle at top,#211b45,#08090d 55%);
 }
 
 .loginBox{
-    width:100%;
-    max-width:430px;
-
-    background:rgba(17,19,25,.96);
-    border:1px solid #292d38;
-    border-radius:28px;
-    padding:32px 24px;
-
-    box-shadow:0 25px 80px rgba(0,0,0,.45);
+  width:100%;
+  max-width:420px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:25px;
+  padding:30px;
+  box-shadow:0 25px 80px #000b;
 }
 
-.loginLogo{
-    width:76px;
-    height:76px;
-    margin:0 auto 18px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:24px;
-    background:linear-gradient(135deg,var(--primary),var(--primary2));
-    box-shadow:0 15px 45px rgba(105,92,255,.35);
-
-    font-size:32px;
+.logo{
+  width:75px;
+  height:75px;
+  border-radius:22px;
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:auto auto 16px;
+  font-size:32px;
+  box-shadow:0 15px 40px #695cff55;
 }
 
 .loginBox h1{
-    text-align:center;
-    font-size:28px;
-    font-weight:800;
+  text-align:center;
+  font-size:26px;
 }
 
 .loginSub{
-    text-align:center;
-    color:var(--muted);
-    font-size:12px;
-    margin:7px 0 30px;
+  text-align:center;
+  color:var(--muted);
+  font-size:12px;
+  margin:7px 0 25px;
 }
 
-.field{
-    margin-bottom:16px;
+.input{
+  width:100%;
+  padding:13px 14px;
+  background:var(--card2);
+  border:1px solid var(--border);
+  border-radius:12px;
+  color:#fff;
+  outline:none;
+  margin-bottom:12px;
 }
 
-.field label{
-    display:block;
-    color:#aab0bd;
-    font-size:10px;
-    font-weight:700;
-    margin-bottom:7px;
+.input:focus{
+  border-color:var(--primary);
 }
 
-input,textarea,select{
-    width:100%;
-    outline:none;
-
-    border:1px solid var(--border);
-    border-radius:13px;
-
-    background:#171a21;
-    color:#fff;
-
-    padding:13px;
-    font-size:13px;
+textarea.input{
+  min-height:100px;
+  resize:vertical;
 }
 
-input:focus,
-textarea:focus,
-select:focus{
-    border-color:var(--primary);
+select.input{
+  appearance:auto;
 }
 
 .btn{
-    border:0;
-    border-radius:13px;
-    padding:13px 16px;
-
-    color:#fff;
-    font-weight:800;
-    font-size:12px;
-
-    background:linear-gradient(135deg,var(--primary),var(--primary2));
+  width:100%;
+  padding:13px;
+  border-radius:12px;
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  color:#fff;
+  font-weight:700;
 }
 
-.btn:active{
-    transform:scale(.97);
+.btn.secondary{
+  background:#20242c;
 }
 
-.btn:disabled{
-    opacity:.5;
+.btn.green{
+  background:var(--green);
+  color:#07130c;
 }
 
-.full{
-    width:100%;
+.btn.red{
+  background:var(--red);
 }
 
-.loginError{
-    display:none;
-    margin-top:13px;
-    padding:11px;
-    border-radius:11px;
-
-    background:#35151b;
-    border:1px solid #65212b;
-    color:#ff7180;
-
-    font-size:10px;
-    line-height:1.5;
+.btn.orange{
+  background:var(--orange);
+  color:#171007;
 }
 
-.loginError.show{
-    display:block;
-}
+/* =====================================================
+   HEADER
+===================================================== */
 
-/* ================= APP ================= */
-
-#app{
-    display:none;
-    min-height:100vh;
-    min-height:100dvh;
+#adminApp{
+  max-width:900px;
+  margin:auto;
 }
 
 .header{
-    position:sticky;
-    top:0;
-    z-index:50;
-
-    background:rgba(8,9,13,.92);
-    backdrop-filter:blur(18px);
-
-    border-bottom:1px solid var(--border);
-
-    padding:
-    max(13px,env(safe-area-inset-top))
-    15px
-    12px;
+  position:sticky;
+  top:0;
+  z-index:30;
+  background:#08090ded;
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid #222631;
+  padding:14px 15px;
 }
 
 .headerInner{
-    max-width:850px;
-    margin:auto;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
 
 .brand{
-    display:flex;
-    align-items:center;
-    gap:10px;
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
 .brandIcon{
-    width:42px;
-    height:42px;
-
-    border-radius:13px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:linear-gradient(135deg,var(--primary),var(--primary2));
-    font-size:17px;
+  width:44px;
+  height:44px;
+  border-radius:13px;
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-.brandText strong{
-    display:block;
-    font-size:14px;
+.brandText b{
+  display:block;
+  font-size:16px;
 }
 
-.brandText span{
-    display:block;
-    color:var(--muted);
-    font-size:9px;
-    margin-top:3px;
+.brandText small{
+  color:var(--muted);
+  font-size:10px;
 }
 
-.headerAdmin{
-    text-align:right;
+.adminBadge{
+  background:#1b3024;
+  color:#6ff09d;
+  border:1px solid #28533a;
+  padding:7px 10px;
+  border-radius:10px;
+  font-size:10px;
+  font-weight:700;
 }
 
-.headerAdmin small{
-    display:block;
-    color:var(--muted);
-    font-size:8px;
-}
-
-.headerAdmin b{
-    display:block;
-    font-size:11px;
-    margin-top:3px;
-}
-
-/* ================= MAIN ================= */
+/* =====================================================
+   MAIN
+===================================================== */
 
 main{
-    max-width:850px;
-    margin:auto;
-    padding:20px 15px 100px;
+  padding:18px 14px;
 }
 
 .page{
-    display:none;
+  display:none;
 }
 
 .page.active{
-    display:block;
+  display:block;
 }
 
 .pageTitle{
-    font-size:24px;
-    font-weight:800;
+  font-size:21px;
+  font-weight:800;
+  margin-bottom:15px;
 }
 
-.pageSub{
-    color:var(--muted);
-    font-size:10px;
-    margin-top:5px;
-    margin-bottom:18px;
-}
-
-/* ================= STATS ================= */
+/* =====================================================
+   STATS
+===================================================== */
 
 .stats{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-    margin-bottom:16px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-bottom:16px;
 }
 
 .stat{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:17px;
-    padding:15px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:15px;
 }
 
 .statIcon{
-    width:34px;
-    height:34px;
-
-    border-radius:10px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:#202039;
-    color:#8b7dff;
-
-    margin-bottom:10px;
+  width:35px;
+  height:35px;
+  border-radius:10px;
+  background:#1d2029;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:10px;
+  color:#9b90ff;
 }
 
 .stat small{
-    display:block;
-    color:var(--muted);
-    font-size:9px;
+  color:var(--muted);
+  font-size:10px;
 }
 
-.stat b{
-    display:block;
-    font-size:20px;
-    margin-top:4px;
+.stat strong{
+  display:block;
+  font-size:21px;
+  margin-top:4px;
 }
 
-/* ================= CARD ================= */
+/* =====================================================
+   CARDS
+===================================================== */
 
 .card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:18px;
-    padding:15px;
-    margin-bottom:13px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:17px;
+  padding:15px;
+  margin-bottom:13px;
 }
 
-.cardHead{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
-    margin-bottom:13px;
+.cardTitle{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px;
 }
 
-.cardHead h3{
-    font-size:13px;
+.cardTitle h3{
+  font-size:15px;
 }
 
-.mini{
-    border:1px solid var(--border);
-    background:#171a21;
-    color:#aeb5c2;
-    padding:7px 9px;
-    border-radius:9px;
-    font-size:9px;
+.muted{
+  color:var(--muted);
+  font-size:11px;
 }
 
-/* ================= TOURNAMENT ================= */
-
-.tournament{
-    overflow:hidden;
-    background:var(--card2);
-    border:1px solid var(--border);
-    border-radius:16px;
-    margin-bottom:11px;
+.row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
 }
 
-.tImage{
-    width:100%;
-    height:130px;
-    object-fit:cover;
-    display:block;
-    background:#20232b;
+.divider{
+  height:1px;
+  background:#252a34;
+  margin:12px 0;
 }
 
-.tBody{
-    padding:13px;
-}
-
-.tTop{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    gap:10px;
-}
-
-.tTitle{
-    font-size:13px;
-    font-weight:800;
-}
-
-.tMeta{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:7px;
-    margin:11px 0;
-}
-
-.meta{
-    background:#101218;
-    border-radius:9px;
-    padding:9px;
-}
-
-.meta small{
-    display:block;
-    color:var(--muted);
-    font-size:8px;
-}
-
-.meta b{
-    display:block;
-    font-size:10px;
-    margin-top:3px;
-}
-
-.actions{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:7px;
-}
+/* =====================================================
+   BUTTONS
+===================================================== */
 
 .smallBtn{
-    border:1px solid var(--border);
-    border-radius:10px;
-    background:#171a21;
-    color:#fff;
-    padding:9px;
-    font-size:10px;
-    font-weight:700;
+  padding:8px 10px;
+  border-radius:9px;
+  background:#20242d;
+  color:#fff;
+  font-size:10px;
+  font-weight:700;
 }
 
 .smallBtn.primary{
-    background:linear-gradient(135deg,var(--primary),var(--primary2));
-    border:0;
+  background:var(--primary);
 }
 
 .smallBtn.green{
-    color:#42d991;
-    border-color:#244c3c;
+  background:#173b28;
+  color:#6ff09d;
 }
 
 .smallBtn.red{
-    color:#ff6473;
-    border-color:#4e2229;
+  background:#3c1920;
+  color:#ff7782;
 }
 
-/* ================= LIST ================= */
-
-.listItem{
-    display:flex;
-    align-items:center;
-    gap:10px;
-
-    padding:12px 0;
-    border-bottom:1px solid var(--border);
+.smallBtn.orange{
+  background:#3c2c18;
+  color:#ffbd62;
 }
 
-.listItem:last-child{
-    border-bottom:0;
+/* =====================================================
+   TOURNAMENT CARD
+===================================================== */
+
+.tournamentCard{
+  overflow:hidden;
 }
 
-.avatar{
-    width:38px;
-    height:38px;
-    border-radius:50%;
-    flex:none;
+.tImage{
+  width:100%;
+  height:160px;
+  object-fit:cover;
+  border-radius:13px;
+  background:#181b22;
+  margin-bottom:12px;
 }
 
-.listInfo{
-    flex:1;
-    min-width:0;
+.tName{
+  font-size:17px;
+  font-weight:800;
 }
 
-.listInfo b{
-    display:block;
-    font-size:11px;
+.tMeta{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px;
+  margin-top:12px;
 }
 
-.listInfo span{
-    display:block;
-    color:var(--muted);
-    font-size:8px;
-    margin-top:3px;
-    word-break:break-all;
+.meta{
+  background:var(--card2);
+  border-radius:10px;
+  padding:9px;
 }
 
-.amount{
-    font-size:11px;
-    font-weight:800;
+.meta span{
+  display:block;
+  color:var(--muted);
+  font-size:9px;
 }
 
-.amount.green{
-    color:var(--green);
+.meta b{
+  display:block;
+  margin-top:3px;
+  font-size:12px;
 }
 
-.amount.red{
-    color:var(--red);
+.cardActions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:12px;
 }
 
-/* ================= STATUS ================= */
+/* =====================================================
+   REQUESTS
+===================================================== */
+
+.requestAmount{
+  font-size:20px;
+  font-weight:800;
+}
+
+.requestType{
+  display:inline-block;
+  padding:5px 8px;
+  border-radius:8px;
+  font-size:9px;
+  font-weight:700;
+}
+
+.depositType{
+  background:#173c29;
+  color:#65ee9b;
+}
+
+.withdrawType{
+  background:#3d2025;
+  color:#ff7581;
+}
 
 .status{
-    display:inline-block;
-    padding:5px 8px;
-    border-radius:7px;
-    font-size:8px;
-    font-weight:800;
+  padding:5px 8px;
+  border-radius:8px;
+  font-size:9px;
+  font-weight:700;
 }
 
-.status.pending{
-    background:#332712;
-    color:#ffc15c;
+.pending{
+  background:#3d3018;
+  color:#ffbf59;
 }
 
-.status.approved{
-    background:#102f22;
-    color:#47dc96;
+.approved{
+  background:#173c29;
+  color:#65ee9b;
 }
 
-.status.rejected{
-    background:#34151b;
-    color:#ff6a78;
+.rejected{
+  background:#3d2025;
+  color:#ff7581;
 }
 
-/* ================= BOTTOM ================= */
+/* =====================================================
+   USERS
+===================================================== */
 
-.bottom{
-    position:fixed;
-    left:0;
-    right:0;
-    bottom:0;
-    z-index:60;
-
-    background:rgba(17,19,25,.96);
-    backdrop-filter:blur(18px);
-
-    border-top:1px solid var(--border);
-
-    padding:
-    8px
-    8px
-    calc(8px + env(safe-area-inset-bottom));
+.userAvatar{
+  width:42px;
+  height:42px;
+  border-radius:50%;
 }
 
-.bottomInner{
-    max-width:650px;
-    margin:auto;
-
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
+.userInfo{
+  flex:1;
 }
 
-.nav{
-    border:0;
-    background:none;
-    color:#707786;
-    padding:6px 2px;
+.userInfo b{
+  display:block;
+  font-size:13px;
 }
 
-.nav i{
-    display:block;
-    font-size:15px;
-    margin-bottom:4px;
+.userInfo small{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  margin-top:3px;
 }
 
-.nav span{
-    font-size:8px;
+.balance{
+  color:#69e99a;
+  font-weight:800;
+  font-size:13px;
 }
 
-.nav.active{
-    color:#887bff;
+/* =====================================================
+   GIFT CODE
+===================================================== */
+
+/* 🔴 NEW: GIFT CODE SYSTEM */
+
+.giftHero{
+  background:linear-gradient(135deg,#211c43,#111319);
+  border:1px solid #40376d;
+  border-radius:18px;
+  padding:17px;
+  margin-bottom:15px;
 }
 
-/* ================= FAB ================= */
+.giftHero h2{
+  font-size:18px;
+}
+
+.giftHero p{
+  color:var(--muted);
+  font-size:11px;
+  margin-top:5px;
+}
+
+.giftCode{
+  font-size:16px;
+  font-weight:800;
+  letter-spacing:1px;
+}
+
+.giftDetails{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
+  margin-top:12px;
+}
+
+.giftDetail{
+  background:var(--card2);
+  padding:8px;
+  border-radius:9px;
+  text-align:center;
+}
+
+.giftDetail small{
+  color:var(--muted);
+  font-size:8px;
+}
+
+.giftDetail b{
+  display:block;
+  font-size:11px;
+  margin-top:3px;
+}
+
+/* =====================================================
+   PAYMENT
+===================================================== */
+
+/* 🔴 NEW: QR PAYMENT SYSTEM */
+
+.qrPreview{
+  width:190px;
+  height:190px;
+  object-fit:contain;
+  display:block;
+  background:#fff;
+  padding:8px;
+  border-radius:14px;
+  margin:10px auto 15px;
+}
+
+/* =====================================================
+   SUPPORT
+===================================================== */
+
+.ticket{
+  background:var(--card2);
+  border-radius:12px;
+  padding:12px;
+  margin-bottom:8px;
+}
+
+.ticketIssue{
+  font-size:12px;
+  line-height:1.5;
+}
+
+.ticketDate{
+  color:var(--muted);
+  font-size:9px;
+  margin-top:6px;
+}
+
+/* =====================================================
+   BOTTOM NAV
+===================================================== */
+
+.bottomNav{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  height:68px;
+  background:#0e1015f5;
+  backdrop-filter:blur(18px);
+  border-top:1px solid #242832;
+  z-index:40;
+}
+
+.navInner{
+  max-width:900px;
+  height:100%;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+}
+
+.navBtn{
+  background:transparent;
+  color:#6f7685;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  font-size:9px;
+}
+
+.navBtn i{
+  font-size:16px;
+}
+
+.navBtn.active{
+  color:#887cff;
+}
+
+/* =====================================================
+   FAB
+===================================================== */
 
 .fab{
-    position:fixed;
-    right:18px;
-    bottom:82px;
-    z-index:55;
-
-    width:52px;
-    height:52px;
-
-    border:0;
-    border-radius:17px;
-
-    color:#fff;
-    font-size:18px;
-
-    background:linear-gradient(135deg,var(--primary),var(--primary2));
-
-    box-shadow:0 15px 35px rgba(105,92,255,.35);
+  position:fixed;
+  right:18px;
+  bottom:83px;
+  width:52px;
+  height:52px;
+  border-radius:17px;
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  color:#fff;
+  font-size:20px;
+  box-shadow:0 12px 35px #695cff55;
+  z-index:20;
 }
 
-/* ================= MODAL ================= */
-
-.overlay{
-    position:fixed;
-    inset:0;
-    z-index:100;
-
-    display:none;
-    align-items:flex-end;
-    justify-content:center;
-
-    padding:12px;
-
-    background:rgba(0,0,0,.7);
-    backdrop-filter:blur(5px);
-}
-
-.overlay.show{
-    display:flex;
-}
+/* =====================================================
+   MODALS
+===================================================== */
 
 .modal{
-    width:100%;
-    max-width:550px;
-    max-height:90vh;
-    overflow:auto;
-
-    background:#111319;
-    border:1px solid #292e38;
-
-    border-radius:23px;
-    padding:20px;
-
-    animation:up .2s ease;
+  position:fixed;
+  inset:0;
+  background:#000c;
+  z-index:100;
+  display:none;
+  align-items:flex-end;
+  justify-content:center;
+  padding:12px;
 }
 
-@keyframes up{
-    from{
-        transform:translateY(30px);
-        opacity:0;
-    }
-    to{
-        transform:translateY(0);
-        opacity:1;
-    }
+.modal.show{
+  display:flex;
 }
 
-.modalHead{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:17px;
+.modalBox{
+  width:100%;
+  max-width:560px;
+  max-height:90vh;
+  overflow:auto;
+  background:#111319;
+  border:1px solid #2b303b;
+  border-radius:22px 22px 15px 15px;
+  padding:18px;
+  animation:modalUp .22s ease;
 }
 
-.modalHead h3{
-    font-size:16px;
+@keyframes modalUp{
+  from{
+    opacity:0;
+    transform:translateY(45px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.modalHeader{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:15px;
+}
+
+.modalHeader h3{
+  font-size:17px;
 }
 
 .close{
-    width:35px;
-    height:35px;
-
-    border:0;
-    border-radius:10px;
-
-    background:#20232b;
-    color:#fff;
+  width:32px;
+  height:32px;
+  border-radius:10px;
+  background:#20242d;
+  color:#aaa;
+  font-size:18px;
 }
 
-.grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
+/* =====================================================
+   TOAST
+===================================================== */
+
+#toast{
+  position:fixed;
+  left:50%;
+  bottom:84px;
+  transform:translateX(-50%) translateY(20px);
+  background:#20242d;
+  border:1px solid #363c49;
+  color:#fff;
+  padding:11px 15px;
+  border-radius:12px;
+  font-size:11px;
+  z-index:300;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+  max-width:90%;
+  text-align:center;
 }
 
-.fullGrid{
-    grid-column:1/-1;
-}
-
-.helpText{
-    color:var(--muted);
-    font-size:9px;
-    line-height:1.6;
-    margin-top:7px;
+#toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
 }
 
 .empty{
-    padding:25px 10px;
-    text-align:center;
-    color:var(--muted);
-    font-size:10px;
+  text-align:center;
+  color:#737a88;
+  padding:30px 10px;
+  font-size:12px;
 }
 
-.empty i{
-    display:block;
-    font-size:25px;
-    margin-bottom:8px;
+.loading{
+  text-align:center;
+  color:#777e8d;
+  padding:25px;
 }
 
-/* ================= TOAST ================= */
+@media(max-width:420px){
 
-.toast{
-    position:fixed;
-    left:50%;
-    bottom:90px;
-    z-index:200;
+  .stats{
+    grid-template-columns:1fr 1fr;
+  }
 
-    transform:translate(-50%,20px);
-    opacity:0;
+  .giftDetails{
+    grid-template-columns:1fr 1fr 1fr;
+  }
 
-    transition:.25s;
-
-    max-width:90%;
-
-    padding:11px 15px;
-    border-radius:11px;
-
-    background:#252933;
-    color:#fff;
-
-    font-size:10px;
-    text-align:center;
 }
 
-.toast.show{
-    opacity:1;
-    transform:translate(-50%,0);
-}
-
-@media(max-width:480px){
-    .grid{
-        grid-template-columns:1fr;
-    }
-
-    .fullGrid{
-        grid-column:auto;
-    }
-
-    .tImage{
-        height:115px;
-    }
-}
 </style>
 </head>
 
 <body>
 
+
 <!-- =====================================================
-LOGIN
+     LOGIN SCREEN
 ===================================================== -->
 
-<div id="loginScreen">
+<section id="loginScreen">
 
-<div class="loginBox">
+  <div class="loginBox">
 
-<div class="loginLogo">
-<i class="fa-solid fa-trophy"></i>
-</div>
+    <div class="logo">
+      <i class="fa-solid fa-trophy"></i>
+    </div>
 
-<h1>Crazy eSports</h1>
+    <h1>Crazy eSports</h1>
 
-<div class="loginSub">
-Administrator Dashboard
-</div>
+    <div class="loginSub">
+      Admin Control Panel
+    </div>
 
-<div class="field">
+    <input
+      id="adminEmail"
+      class="input"
+      type="email"
+      placeholder="Admin Email"
+    >
 
-<label>ADMIN EMAIL</label>
+    <input
+      id="adminPassword"
+      class="input"
+      type="password"
+      placeholder="Admin Password"
+    >
 
-<input
-id="adminEmail"
-type="email"
-autocomplete="username"
-placeholder="Enter admin email">
+    <button class="btn" onclick="adminLogin()">
+      <i class="fa-solid fa-right-to-bracket"></i>
+      Login as Admin
+    </button>
 
-</div>
+  </div>
 
-<div class="field">
-
-<label>ADMIN PASSWORD</label>
-
-<input
-id="adminPassword"
-type="password"
-autocomplete="current-password"
-placeholder="Enter password">
-
-</div>
-
-<button
-class="btn full"
-id="loginBtn"
-onclick="adminLogin()">
-
-<i class="fa-solid fa-right-to-bracket"></i>
-&nbsp; Login
-
-</button>
-
-<div
-id="loginError"
-class="loginError">
-</div>
-
-</div>
-
-</div>
+</section>
 
 
 <!-- =====================================================
-APP
+     ADMIN APP
 ===================================================== -->
 
-<div id="app">
+<section id="adminApp" class="hidden">
 
 <header class="header">
 
-<div class="headerInner">
+  <div class="headerInner">
 
-<div class="brand">
+    <div class="brand">
 
-<div class="brandIcon">
-<i class="fa-solid fa-trophy"></i>
-</div>
+      <div class="brandIcon">
+        <i class="fa-solid fa-trophy"></i>
+      </div>
 
-<div class="brandText">
+      <div class="brandText">
+        <b>Crazy eSports</b>
+        <small>Admin Control Panel</small>
+      </div>
 
-<strong>Crazy eSports</strong>
+    </div>
 
-<span>ADMIN PANEL</span>
+    <div class="adminBadge">
+      <i class="fa-solid fa-shield-halved"></i>
+      ADMIN
+    </div>
 
-</div>
-
-</div>
-
-<div class="headerAdmin">
-
-<small>Administrator</small>
-
-<b id="adminEmailDisplay">
-Admin
-</b>
-
-</div>
-
-</div>
+  </div>
 
 </header>
 
 
 <main>
 
-<!-- =====================================================
-HOME
-===================================================== -->
-
-<section
-id="homePage"
-class="page active">
-
-<div class="pageTitle">
-Dashboard
-</div>
-
-<div class="pageSub">
-Manage your Crazy eSports platform
-</div>
-
-
-<div class="stats">
-
-<div class="stat">
-
-<div class="statIcon">
-<i class="fa-solid fa-users"></i>
-</div>
-
-<small>Total Users</small>
-
-<b id="statUsers">0</b>
-
-</div>
-
-
-<div class="stat">
-
-<div class="statIcon">
-<i class="fa-solid fa-indian-rupee-sign"></i>
-</div>
-
-<small>Pending Deposits</small>
-
-<b id="statDeposits">0</b>
-
-</div>
-
-
-<div class="stat">
-
-<div class="statIcon">
-<i class="fa-solid fa-arrow-up"></i>
-</div>
-
-<small>Pending Withdrawals</small>
-
-<b id="statWithdrawals">0</b>
-
-</div>
-
-
-<div class="stat">
-
-<div class="statIcon">
-<i class="fa-solid fa-gamepad"></i>
-</div>
-
-<small>Tournaments</small>
-
-<b id="statTournaments">0</b>
-
-</div>
-
-</div>
-
-
-<div class="card">
-
-<div class="cardHead">
-
-<h3>Pending Requests</h3>
-
-<button
-class="mini"
-onclick="loadRequests()">
-
-Refresh
-
-</button>
-
-</div>
-
-<div id="homeRequests"></div>
-
-</div>
-
-</section>
-
 
 <!-- =====================================================
-GAMES
+     HOME PAGE
 ===================================================== -->
 
-<section
-id="gamesPage"
-class="page">
+<div class="page active" id="homePage">
 
-<div class="pageTitle">
-Tournaments
+  <div class="pageTitle">
+    Dashboard
+  </div>
+
+  <div class="stats">
+
+    <div class="stat">
+      <div class="statIcon">
+        <i class="fa-solid fa-users"></i>
+      </div>
+      <small>Total Users</small>
+      <strong id="statUsers">0</strong>
+    </div>
+
+    <div class="stat">
+      <div class="statIcon">
+        <i class="fa-solid fa-gamepad"></i>
+      </div>
+      <small>Tournaments</small>
+      <strong id="statTournaments">0</strong>
+    </div>
+
+    <div class="stat">
+      <div class="statIcon">
+        <i class="fa-solid fa-arrow-down"></i>
+      </div>
+      <small>Pending Deposits</small>
+      <strong id="statDeposits">0</strong>
+    </div>
+
+    <div class="stat">
+      <div class="statIcon">
+        <i class="fa-solid fa-arrow-up"></i>
+      </div>
+      <small>Pending Withdrawals</small>
+      <strong id="statWithdraws">0</strong>
+    </div>
+
+    <!-- 🔴 NEW: GIFT CODE STAT -->
+
+    <div class="stat">
+      <div class="statIcon">
+        <i class="fa-solid fa-gift"></i>
+      </div>
+      <small>Gift Codes</small>
+      <strong id="statGiftCodes">0</strong>
+    </div>
+
+    <div class="stat">
+      <div class="statIcon">
+        <i class="fa-solid fa-ticket"></i>
+      </div>
+      <small>Support Tickets</small>
+      <strong id="statTickets">0</strong>
+    </div>
+
+  </div>
+
+
+  <!-- PENDING REQUESTS -->
+
+  <div class="card">
+
+    <div class="cardTitle">
+
+      <h3>
+        <i class="fa-solid fa-clock"></i>
+        Pending Requests
+      </h3>
+
+      <button class="smallBtn primary"
+              onclick="goPage('requests',this)">
+        View All
+      </button>
+
+    </div>
+
+    <div id="homeRequests">
+      <div class="loading">
+        Loading...
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- QUICK SETTINGS -->
+
+  <div class="card">
+
+    <div class="cardTitle">
+      <h3>Quick Actions</h3>
+    </div>
+
+    <div class="cardActions">
+
+      <button class="smallBtn primary"
+              onclick="openTournamentModal()">
+        <i class="fa-solid fa-plus"></i>
+        Tournament
+      </button>
+
+      <button class="smallBtn"
+              onclick="goPage('giftcodes',this)">
+        <i class="fa-solid fa-gift"></i>
+        Gift Code
+      </button>
+
+      <button class="smallBtn"
+              onclick="goPage('settings',this)">
+        <i class="fa-solid fa-qrcode"></i>
+        Payment QR
+      </button>
+
+      <button class="smallBtn"
+              onclick="goPage('users',this)">
+        <i class="fa-solid fa-users"></i>
+        Users
+      </button>
+
+    </div>
+
+  </div>
+
 </div>
-
-<div class="pageSub">
-Create and manage matches
-</div>
-
-<div id="tournamentsList"></div>
-
-</section>
-
-
-<!-- =====================================================
-USERS
-===================================================== -->
-
-<section
-id="usersPage"
-class="page">
-
-<div class="pageTitle">
-Users
-</div>
-
-<div class="pageSub">
-Manage registered users and balances
-</div>
-
-<div class="card">
-
-<input
-id="userSearch"
-type="text"
-placeholder="Search username or email..."
-oninput="filterUsers()">
-
-</div>
-
-<div id="usersList"></div>
-
-</section>
 
 
 <!-- =====================================================
-SETTINGS
+     GAMES PAGE
 ===================================================== -->
 
-<section
-id="settingsPage"
-class="page">
+<div class="page" id="gamesPage">
 
-<div class="pageTitle">
-Settings
-</div>
+  <div class="row" style="margin-bottom:15px">
 
-<div class="pageSub">
-Manage payment and administrator settings
-</div>
+    <div class="pageTitle" style="margin:0">
+      Tournaments
+    </div>
 
+    <button class="smallBtn primary"
+            onclick="openTournamentModal()">
+      <i class="fa-solid fa-plus"></i>
+      Add
+    </button>
 
-<div class="card">
+  </div>
 
-<div class="cardHead">
-
-<h3>Payment Settings</h3>
-
-</div>
-
-<div class="field">
-
-<label>ADMIN UPI ID</label>
-
-<input
-id="adminUpi"
-type="text"
-placeholder="example@upi">
-
-</div>
-
-<div class="field">
-
-<label>QR CODE URL</label>
-
-<input
-id="qrUrl"
-type="url"
-placeholder="https://...">
-
-<div class="helpText">
-Use a direct image URL. Example: https://i.ibb.co/....png
-</div>
-
-</div>
-
-<button
-class="btn full"
-onclick="savePayment()">
-
-<i class="fa-solid fa-floppy-disk"></i>
-&nbsp; Save Settings
-
-</button>
+  <div id="tournamentList">
+    <div class="loading">
+      Loading tournaments...
+    </div>
+  </div>
 
 </div>
 
 
-<div class="card">
+<!-- =====================================================
+     REQUEST PAGE
+===================================================== -->
 
-<div class="cardHead">
+<div class="page" id="requestsPage">
 
-<h3>Support Tickets</h3>
+  <div class="pageTitle">
+    Wallet Requests
+  </div>
 
-<button
-class="mini"
-onclick="loadTickets()">
-
-Refresh
-
-</button>
-
-</div>
-
-<div id="ticketsList"></div>
+  <div id="requestList">
+    <div class="loading">
+      Loading requests...
+    </div>
+  </div>
 
 </div>
 
 
-<div class="card">
+<!-- =====================================================
+     USERS PAGE
+===================================================== -->
 
-<div class="cardHead">
+<div class="page" id="usersPage">
 
-<h3>Admin Account</h3>
+  <div class="pageTitle">
+    Users
+  </div>
+
+  <input
+    id="userSearch"
+    class="input"
+    placeholder="Search username or email..."
+    oninput="renderUsers()"
+  >
+
+  <div id="userList">
+    <div class="loading">
+      Loading users...
+    </div>
+  </div>
 
 </div>
 
-<p class="helpText">
-Admin password is managed by Firebase Authentication. Use Firebase Authentication → Users → Reset password to change it.
-</p>
 
-<button
-class="smallBtn red"
-style="width:100%;margin-top:12px"
-onclick="logoutAdmin()">
+<!-- =====================================================
+     GIFT CODE PAGE
+===================================================== -->
 
-<i class="fa-solid fa-right-from-bracket"></i>
-&nbsp; Logout Admin
+<!-- 🔴 NEW: COMPLETE GIFT CODE ADMIN PAGE -->
 
-</button>
+<div class="page" id="giftcodesPage">
+
+  <div class="pageTitle">
+    Gift Codes 🎁
+  </div>
+
+  <div class="giftHero">
+
+    <h2>
+      Create Promotional Gift Code
+    </h2>
+
+    <p>
+      Users can redeem these codes from their User Panel.
+    </p>
+
+    <button
+      class="btn"
+      style="margin-top:13px"
+      onclick="openGiftModal()"
+    >
+      <i class="fa-solid fa-plus"></i>
+      Create Gift Code
+    </button>
+
+  </div>
+
+  <div id="giftCodeList">
+    <div class="loading">
+      Loading gift codes...
+    </div>
+  </div>
 
 </div>
 
-</section>
+
+<!-- =====================================================
+     SETTINGS PAGE
+===================================================== -->
+
+<div class="page" id="settingsPage">
+
+  <div class="pageTitle">
+    Settings
+  </div>
+
+
+  <!-- PAYMENT SETTINGS -->
+
+  <div class="card">
+
+    <div class="cardTitle">
+
+      <h3>
+        <i class="fa-solid fa-wallet"></i>
+        Payment Settings
+      </h3>
+
+    </div>
+
+    <label class="muted">
+      Admin UPI ID
+    </label>
+
+    <input
+      id="settingUPI"
+      class="input"
+      placeholder="example@upi"
+    >
+
+    <!-- 🔴 NEW: QR PAYMENT -->
+
+    <label class="muted">
+      QR Code Image URL
+    </label>
+
+    <input
+      id="settingQR"
+      class="input"
+      placeholder="https://..."
+    >
+
+    <img
+      id="adminQRPreview"
+      class="qrPreview"
+      src=""
+      alt="QR Preview"
+    >
+
+    <button
+      class="btn"
+      onclick="savePaymentSettings()"
+    >
+      <i class="fa-solid fa-save"></i>
+      Save Payment Settings
+    </button>
+
+  </div>
+
+
+  <!-- SUPPORT -->
+
+  <div class="card">
+
+    <div class="cardTitle">
+
+      <h3>
+        <i class="fa-solid fa-headset"></i>
+        Support Tickets
+      </h3>
+
+    </div>
+
+    <div id="ticketList">
+      <div class="loading">
+        Loading tickets...
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ACCOUNT -->
+
+  <div class="card">
+
+    <div class="cardTitle">
+      <h3>Admin Account</h3>
+    </div>
+
+    <button
+      class="btn red"
+      onclick="adminLogout()"
+    >
+      <i class="fa-solid fa-right-from-bracket"></i>
+      Logout
+    </button>
+
+  </div>
+
+</div>
+
 
 </main>
 
 
-<!-- FAB -->
-
-<button
-class="fab"
-id="fab"
-onclick="openTournamentModal()">
-
-<i class="fa-solid fa-plus"></i>
-
-</button>
-
-
-<!-- BOTTOM NAV -->
-
-<nav class="bottom">
-
-<div class="bottomInner">
-
-<button
-class="nav active"
-onclick="showPage('homePage',this)">
-
-<i class="fa-solid fa-house"></i>
-
-<span>Home</span>
-
-</button>
-
-
-<button
-class="nav"
-onclick="showPage('gamesPage',this)">
-
-<i class="fa-solid fa-gamepad"></i>
-
-<span>Games</span>
-
-</button>
-
-
-<button
-class="nav"
-onclick="showPage('usersPage',this)">
-
-<i class="fa-solid fa-users"></i>
-
-<span>Users</span>
-
-</button>
-
-
-<button
-class="nav"
-onclick="showPage('settingsPage',this)">
-
-<i class="fa-solid fa-gear"></i>
-
-<span>Settings</span>
-
-</button>
-
-</div>
-
-</nav>
-
-</div>
-
-
 <!-- =====================================================
-TOURNAMENT MODAL
+     BOTTOM NAV
 ===================================================== -->
 
-<div
-class="overlay"
-id="tournamentModal">
-
-<div class="modal">
-
-<div class="modalHead">
-
-<h3 id="tournamentModalTitle">
-New Tournament
-</h3>
-
-<button
-class="close"
-onclick="closeModal('tournamentModal')">
-
-<i class="fa-solid fa-xmark"></i>
-
-</button>
-
-</div>
-
-
-<div class="grid">
-
-<div class="field fullGrid">
-
-<label>TITLE</label>
-
-<input
-id="tTitle"
-type="text"
-placeholder="Free Fire Custom">
-
-</div>
-
-
-<div class="field">
-
-<label>TIME</label>
-
-<input
-id="tTime"
-type="text"
-placeholder="15 Sept 9 PM">
-
-</div>
-
-
-<div class="field">
-
-<label>ENTRY FEE ₹</label>
-
-<input
-id="tFee"
-type="number"
-min="0"
-placeholder="10">
-
-</div>
-
-
-<div class="field">
-
-<label>PRIZE POOL ₹</label>
-
-<input
-id="tPool"
-type="number"
-min="0"
-placeholder="50">
-
-</div>
-
-
-<div class="field">
-
-<label>TOTAL SLOTS</label>
-
-<input
-id="tTotal"
-type="number"
-min="1"
-placeholder="48">
-
-</div>
-
-
-<div class="field fullGrid">
-
-<label>IMAGE URL</label>
-
-<input
-id="tImage"
-type="url"
-placeholder="https://...">
-
-</div>
-
-</div>
-
-
-<button
-class="btn full"
-id="saveTournamentBtn"
-onclick="saveTournament()">
-
-Save Tournament
-
-</button>
-
-</div>
-
-</div>
-
-
-<!-- =====================================================
-ROOM MODAL
-===================================================== -->
-
-<div
-class="overlay"
-id="roomModal">
-
-<div class="modal">
-
-<div class="modalHead">
-
-<h3>
-Room Details
-</h3>
-
-<button
-class="close"
-onclick="closeModal('roomModal')">
-
-<i class="fa-solid fa-xmark"></i>
-
-</button>
-
-</div>
-
-<div class="field">
-
-<label>ROOM ID</label>
-
-<input
-id="roomId"
-type="text"
-placeholder="Enter Room ID">
-
-</div>
-
-<div class="field">
-
-<label>ROOM PASSWORD</label>
-
-<input
-id="roomPassword"
-type="text"
-placeholder="Enter Room Password">
-
-</div>
-
-<button
-class="btn full"
-onclick="saveRoom()">
-
-Save Room Details
-
-</button>
-
-</div>
-
-</div>
-
-
-<!-- =====================================================
-USER BALANCE MODAL
-===================================================== -->
-
-<div
-class="overlay"
-id="balanceModal">
-
-<div class="modal">
-
-<div class="modalHead">
-
-<h3>
-Edit User Balance
-</h3>
-
-<button
-class="close"
-onclick="closeModal('balanceModal')">
-
-<i class="fa-solid fa-xmark"></i>
-
-</button>
-
-</div>
-
-<div id="balanceUserInfo"
-class="helpText"
-style="margin-bottom:15px">
-</div>
-
-<div class="field">
-
-<label>NEW BALANCE ₹</label>
-
-<input
-id="newBalance"
-type="number"
-min="0"
-placeholder="Enter balance">
-
-</div>
-
-<button
-class="btn full"
-onclick="saveBalance()">
-
-Update Balance
-
-</button>
-
-</div>
-
-</div>
-
-
-<!-- =====================================================
-REQUEST MODAL
-===================================================== -->
-
-<div
-class="overlay"
-id="requestModal">
-
-<div class="modal">
-
-<div class="modalHead">
-
-<h3 id="requestModalTitle">
-Request
-</h3>
-
-<button
-class="close"
-onclick="closeModal('requestModal')">
-
-<i class="fa-solid fa-xmark"></i>
-
-</button>
-
-</div>
-
-<div id="requestDetails"></div>
-
-<div class="grid" style="margin-top:15px">
-
-<button
-class="smallBtn green"
-onclick="approveCurrentRequest()">
-
-<i class="fa-solid fa-check"></i>
-&nbsp; Approve
-
-</button>
-
-<button
-class="smallBtn red"
-onclick="rejectCurrentRequest()">
-
-<i class="fa-solid fa-xmark"></i>
-&nbsp; Reject
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- =====================================================
-SUPPORT MODAL
-===================================================== -->
-
-<div
-class="overlay"
-id="supportModal">
-
-<div class="modal">
-
-<div class="modalHead">
-
-<h3>
-Support Ticket
-</h3>
-
-<button
-class="close"
-onclick="closeModal('supportModal')">
-
-<i class="fa-solid fa-xmark"></i>
-
-</button>
-
-</div>
-
-<div id="supportDetails"></div>
-
-<button
-class="btn full"
-style="margin-top:15px"
-onclick="closeModal('supportModal')">
-
-Close
-
-</button>
-
-</div>
-
-</div>
-
-
-<div
-id="toast"
-class="toast">
-</div>
-
-
-<!-- =====================================================
-FIREBASE
-===================================================== -->
-
-<script type="module">
-
-import {
-    initializeApp
-} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-
-import {
-    getAuth,
-    signInWithEmailAndPassword,
-    onAuthStateChanged,
-    signOut
-} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
-
-import {
-    getFirestore,
-    collection,
-    doc,
-    getDoc,
-    getDocs,
-    addDoc,
-    setDoc,
-    updateDoc,
-    deleteDoc,
-    query,
-    orderBy,
-    onSnapshot,
-    serverTimestamp,
-    runTransaction
-} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
-
-
-/* =====================================================
-FIREBASE CONFIG
-===================================================== */
-const firebaseConfig = {
-  apiKey: "AIzaSyADFNTi3Tct_vNrH4_gq-mdfCBK1B98xfM",
-  authDomain: "crazy-esports-5d42b.firebaseapp.com",
-  databaseURL: "https://crazy-esports-5d42b-default-rtdb.firebaseio.com",
-  projectId: "crazy-esports-5d42b",
-  storageBucket: "crazy-esports-5d42b.firebasestorage.app",
-  messagingSenderId: "650811757226",
-  appId: "1:650811757226:web:1a336310a46345bd8df6d3"
-};
-
-
-
-/* =====================================================
-ADMIN EMAIL
-===================================================== */
-
-const ADMIN_EMAIL = "nitinkumarsingh7271@gmail.com";
-
-
-/* =====================================================
-INIT
-===================================================== */
-
-const app = initializeApp(firebaseConfig);
-
-const auth = getAuth(app);
-
-const db = getFirestore(app);
-
-
-/* =====================================================
-STATE
-===================================================== */
-
-let currentAdmin = null;
-
-let tournaments = [];
-
-let users = [];
-
-let walletRequests = [];
-
-let currentEditTournamentId = null;
-
-let currentRoomTournamentId = null;
-
-let currentBalanceUserId = null;
-
-let currentRequest = null;
-
-let unsubTournaments = null;
-
-let unsubUsers = null;
-
-let unsubRequests = null;
-
-
-/* =====================================================
-HELPERS
-===================================================== */
-
-window.showToast = function(message){
-
-    const toast =
-    document.getElementById("toast");
-
-    toast.textContent = message;
-
-    toast.classList.add("show");
-
-    clearTimeout(window.toastTimer);
-
-    window.toastTimer =
-    setTimeout(() => {
-        toast.classList.remove("show");
-    },2500);
-};
-
-
-window.closeModal = function(id){
-
-    document
-    .getElementById(id)
-    .classList.remove("show");
-
-};
-
-
-function openModal(id){
-
-    document
-    .getElementById(id)
-    .classList.add("show");
-
-}
-
-
-function esc(value){
-
-    if(value === undefined || value === null){
-        return "";
-    }
-
-    return String(value)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-}
-
-
-/* =====================================================
-LOGIN
-===================================================== */
-
-window.adminLogin = async function(){
-
-    const email =
-    document
-    .getElementById("adminEmail")
-    .value
-    .trim();
-
-    const password =
-    document
-    .getElementById("adminPassword")
-    .value;
-
-    const errorBox =
-    document
-    .getElementById("loginError");
-
-    const button =
-    document
-    .getElementById("loginBtn");
-
-
-    errorBox.classList.remove("show");
-    errorBox.textContent = "";
-
-
-    if(!email || !password){
-
-        errorBox.textContent =
-        "Please enter email and password.";
-
-        errorBox.classList.add("show");
-
-        return;
-    }
-
-
-    if(email.toLowerCase() !== ADMIN_EMAIL.toLowerCase()){
-
-        errorBox.textContent =
-        "This email is not the configured admin email.";
-
-        errorBox.classList.add("show");
-
-        return;
-    }
-
-
-    button.disabled = true;
-
-    button.innerHTML =
-    '<i class="fa-solid fa-spinner fa-spin"></i> Logging in...';
-
-
-    try{
-
-        await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
-
-    }catch(error){
-
-        console.error(error);
-
-        let message =
-        "Login failed.";
-
-        if(error.code === "auth/invalid-credential"){
-            message =
-            "Invalid email or password.";
-        }
-        else if(error.code === "auth/user-not-found"){
-            message =
-            "Admin account is not registered in Firebase Authentication.";
-        }
-        else if(error.code === "auth/wrong-password"){
-            message =
-            "Wrong password.";
-        }
-        else if(error.code === "auth/invalid-email"){
-            message =
-            "Invalid email address.";
-        }
-        else if(error.code === "auth/too-many-requests"){
-            message =
-            "Too many attempts. Try again later.";
-        }
-
-        errorBox.textContent = message;
-
-        errorBox.classList.add("show");
-
-    }finally{
-
-        button.disabled = false;
-
-        button.innerHTML =
-        '<i class="fa-solid fa-right-to-bracket"></i> &nbsp; Login';
-
-    }
-
-};
-
-
-/* =====================================================
-AUTH STATE
-===================================================== */
-
-onAuthStateChanged(auth, async(user) => {
-
-    if(!user){
-
-        currentAdmin = null;
-
-        document
-        .getElementById("loginScreen")
-        .style.display = "flex";
-
-        document
-        .getElementById("app")
-        .style.display = "none";
-
-        return;
-    }
-
-
-    if(
-        user.email &&
-        user.email.toLowerCase() === ADMIN_EMAIL.toLowerCase()
-    ){
-
-        currentAdmin = user;
-
-        document
-        .getElementById("loginScreen")
-        .style.display = "none";
-
-        document
-        .getElementById("app")
-        .style.display = "block";
-
-        document
-        .getElementById("adminEmailDisplay")
-        .textContent = user.email;
-
-        startRealtime();
-
-    }else{
-
-        await signOut(auth);
-
-        document
-        .getElementById("loginScreen")
-        .style.display = "flex";
-
-        const errorBox =
-        document.getElementById("loginError");
-
-        errorBox.textContent =
-        "This account does not have admin access.";
-
-        errorBox.classList.add("show");
-    }
-
-});
-
-
-/* =====================================================
-LOGOUT
-===================================================== */
-
-window.logoutAdmin = async function(){
-
-    await signOut(auth);
-
-    showToast("Logged out");
-
-};
-
-
-window.startRealtime = function(){
-
-    loadPayment();
-
-    loadTickets();
-
-    loadRequests();
-
-    loadUsers();
-
-    loadTournaments();
-
-};
-
-
-/* =====================================================
-PAGE NAVIGATION
-===================================================== */
-
-window.showPage = function(pageId,button){
-
-    document
-    .querySelectorAll(".page")
-    .forEach(page => {
-        page.classList.remove("active");
-    });
-
-
-    document
-    .getElementById(pageId)
-    .classList.add("active");
-
-
-    document
-    .querySelectorAll(".nav")
-    .forEach(nav => {
-        nav.classList.remove("active");
-    });
-
-
-    button.classList.add("active");
-
-
-    const fab =
-    document.getElementById("fab");
-
-    if(pageId === "gamesPage"){
-        fab.style.display = "block";
-    }else{
-        fab.style.display = "none";
-    }
-
-};
-
-
-/* =====================================================
-TOURNAMENTS REALTIME
-===================================================== */
-
-function loadTournaments(){
-
-    if(unsubTournaments){
-        unsubTournaments();
-    }
-
-
-    const ref =
-    collection(db,"tournaments");
-
-
-    unsubTournaments =
-    onSnapshot(ref,(snapshot)=>{
-
-        tournaments = [];
-
-        snapshot.forEach(item => {
-
-            tournaments.push({
-                id:item.id,
-                ...item.data()
-            });
-
-        });
-
-
-        renderTournaments();
-
-        document
-        .getElementById("statTournaments")
-        .textContent = tournaments.length;
-
-    },error => {
-
-        console.error(error);
-
-        showToast("Tournament permission denied");
-
-    });
-
-}
-
-
-function renderTournaments(){
-
-    const box =
-    document.getElementById("tournamentsList");
-
-
-    if(!tournaments.length){
-
-        box.innerHTML =
-        `
-        <div class="card">
-            <div class="empty">
-                <i class="fa-solid fa-gamepad"></i>
-                No tournaments found.
-            </div>
-        </div>
-        `;
-
-        return;
-    }
-
-
-    box.innerHTML =
-    tournaments.map(t => {
-
-        const filled =
-        Number(t.filled || 0);
-
-        const total =
-        Number(t.total || 0);
-
-        return `
-        <div class="tournament">
-
-            ${
-                t.image
-                ?
-                `<img
-                    class="tImage"
-                    src="${esc(t.image)}"
-                    onerror="this.style.display='none'"
-                >`
-                :
-                ``
-            }
-
-            <div class="tBody">
-
-                <div class="tTop">
-
-                    <div class="tTitle">
-                        ${esc(t.title || "Tournament")}
-                    </div>
-
-                    <span class="status approved">
-                        LIVE
-                    </span>
-
-                </div>
-
-
-                <div class="tMeta">
-
-                    <div class="meta">
-                        <small>TIME</small>
-                        <b>${esc(t.time || "-")}</b>
-                    </div>
-
-                    <div class="meta">
-                        <small>ENTRY FEE</small>
-                        <b>₹${Number(t.fee || 0)}</b>
-                    </div>
-
-                    <div class="meta">
-                        <small>PRIZE POOL</small>
-                        <b>₹${Number(t.pool || 0)}</b>
-                    </div>
-
-                    <div class="meta">
-                        <small>SLOTS</small>
-                        <b>${filled}/${total}</b>
-                    </div>
-
-                </div>
-
-
-                <div class="actions">
-
-                    <button
-                    class="smallBtn primary"
-                    onclick="editTournament('${t.id}')">
-
-                    <i class="fa-solid fa-pen"></i>
-                    Edit
-
-                    </button>
-
-
-                    <button
-                    class="smallBtn"
-                    onclick="openRoomModal('${t.id}')">
-
-                    <i class="fa-solid fa-door-open"></i>
-                    Room
-
-                    </button>
-
-
-                    <button
-                    class="smallBtn red"
-                    onclick="deleteTournament('${t.id}')">
-
-                    <i class="fa-solid fa-trash"></i>
-                    Delete
-
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-        `;
-
-    }).join("");
-
-}
-
-
-/* =====================================================
-CREATE / EDIT TOURNAMENT
-===================================================== */
-
-window.openTournamentModal = function(id = null){
-
-    currentEditTournamentId = id;
-
-    document
-    .getElementById("tournamentModalTitle")
-    .textContent =
-    id ? "Edit Tournament" : "New Tournament";
-
-
-    if(id){
-
-        const t =
-        tournaments.find(x => x.id === id);
-
-        if(!t) return;
-
-
-        document.getElementById("tTitle").value =
-        t.title || "";
-
-        document.getElementById("tTime").value =
-        t.time || "";
-
-        document.getElementById("tFee").value =
-        t.fee || 0;
-
-        document.getElementById("tPool").value =
-        t.pool || 0;
-
-        document.getElementById("tTotal").value =
-        t.total || 0;
-
-        document.getElementById("tImage").value =
-        t.image || "";
-
-    }else{
-
-        document.getElementById("tTitle").value = "";
-        document.getElementById("tTime").value = "";
-        document.getElementById("tFee").value = "";
-        document.getElementById("tPool").value = "";
-        document.getElementById("tTotal").value = "";
-        document.getElementById("tImage").value = "";
-
-    }
-
-
-    openModal("tournamentModal");
-
-};
-
-
-window.editTournament = function(id){
-
-    openTournamentModal(id);
-
-};
-
-
-window.saveTournament = async function(){
-
-    const title =
-    document.getElementById("tTitle").value.trim();
-
-    const time =
-    document.getElementById("tTime").value.trim();
-
-    const fee =
-    Number(document.getElementById("tFee").value || 0);
-
-    const pool =
-    Number(document.getElementById("tPool").value || 0);
-
-    const total =
-    Number(document.getElementById("tTotal").value || 0);
-
-    const image =
-    document.getElementById("tImage").value.trim();
-
-
-    if(!title || !time || total < 1){
-
-        showToast("Fill title, time and slots.");
-
-        return;
-    }
-
-
-    try{
-
-        const data = {
-
-            title,
-            time,
-            fee,
-            pool,
-            total,
-            image
-
-        };
-
-
-        if(currentEditTournamentId){
-
-            await updateDoc(
-                doc(
-                    db,
-                    "tournaments",
-                    currentEditTournamentId
-                ),
-                data
-            );
-
-            showToast("Tournament updated.");
-
-        }else{
-
-            await addDoc(
-                collection(db,"tournaments"),
-                {
-                    ...data,
-                    filled:0,
-                    roomId:"",
-                    password:"",
-                    createdAt:serverTimestamp()
-                }
-            );
-
-            showToast("Tournament created.");
-
-        }
-
-
-        closeModal("tournamentModal");
-
-    }catch(error){
-
-        console.error(error);
-
-        showToast("Permission denied or save failed.");
-
-    }
-
-};
-
-
-/* =====================================================
-DELETE TOURNAMENT
-===================================================== */
-
-window.deleteTournament = async function(id){
-
-    if(!confirm("Delete this tournament?")){
-        return;
-    }
-
-
-    try{
-
-        await deleteDoc(
-            doc(db,"tournaments",id)
-        );
-
-        showToast("Tournament deleted.");
-
-    }catch(error){
-
-        console.error(error);
-
-        showToast("Delete failed.");
-
-    }
-
-};
-
-
-/* =====================================================
-ROOM
-===================================================== */
-
-window.openRoomModal = function(id){
-
-    currentRoomTournamentId = id;
-
-    const t =
-    tournaments.find(x => x.id === id);
-
-    if(!t) return;
-
-
-    document.getElementById("roomId").value =
-    t.roomId || "";
-
-    document.getElementById("roomPassword").value =
-    t.password || "";
-
-
-    openModal("roomModal");
-
-};
-
-
-window.saveRoom = async function(){
-
-    if(!currentRoomTournamentId){
-        return;
-    }
-
-
-    const roomId =
-    document.getElementById("roomId").value.trim();
-
-    const password =
-    document.getElementById("roomPassword").value.trim();
-
-
-    try{
-
-        await updateDoc(
-            doc(
-                db,
-                "tournaments",
-                currentRoomTournamentId
-            ),
-            {
-                roomId,
-                password
-            }
-        );
-
-
-        closeModal("roomModal");
-
-        showToast("Room details updated.");
-
-    }catch(error){
-
-        console.error(error);
-
-        showToast("Could not update room.");
-
-    }
-
-};
-
-
-/* =====================================================
-USERS
-===================================================== */
-
-function loadUsers(){
-
-    if(unsubUsers){
-        unsubUsers();
-    }
-
-
-    unsubUsers =
-    onSnapshot(
-        collection(db,"users"),
-        snapshot => {
-
-            users = [];
-
-            snapshot.forEach(item => {
-
-                users.push({
-                    id:item.id,
-                    ...item.data()
-                });
-
-            });
-
-
-            document
-            .getElementById("statUsers")
-            .textContent =
-            users.length;
-
-
-            renderUsers();
-
-        },
-        error => {
-
-            console.error(error);
-
-            showToast("Users permission denied.");
-
-        }
-    );
-
-}
-
-
-window.filterUsers = function(){
-
-    renderUsers();
-
-};
-
-
-function renderUsers(){
-
-    const box =
-    document.getElementById("usersList");
-
-
-    const search =
-    document
-    .getElementById("userSearch")
-    .value
-    .trim()
-    .toLowerCase();
-
-
-    const filtered =
-    users.filter(user => {
-
-        const username =
-        String(user.username || "")
-        .toLowerCase();
-
-        const email =
-        String(user.email || "")
-        .toLowerCase();
-
-        return (
-            !search ||
-            username.includes(search) ||
-            email.includes(search)
-        );
-
-    });
-
-
-    if(!filtered.length){
-
-        box.innerHTML =
-        `
-        <div class="card">
-            <div class="empty">
-                <i class="fa-solid fa-user"></i>
-                No users found.
-            </div>
-        </div>
-        `;
-
-        return;
-    }
-
-
-    box.innerHTML =
-    filtered.map(user => {
-
-        return `
-        <div class="card">
-
-            <div class="listItem">
-
-                <img
-                class="avatar"
-                src="https://ui-avatars.com/api/?name=${encodeURIComponent(user.username || "User")}&background=695cff&color=fff"
-                >
-
-                <div class="listInfo">
-
-                    <b>${esc(user.username || "User")}</b>
-
-                    <span>${esc(user.email || "")}</span>
-
-                </div>
-
-                <div class="amount">
-                    ₹${Number(user.balance || 0)}
-                </div>
-
-            </div>
-
-
-            <button
-            class="smallBtn primary"
-            style="width:100%;margin-top:10px"
-            onclick="openBalanceModal('${user.id}')">
-
-            <i class="fa-solid fa-wallet"></i>
-            &nbsp; Edit Balance
-
-            </button>
-
-        </div>
-        `;
-
-    }).join("");
-
-}
-
-
-/* =====================================================
-BALANCE
-===================================================== */
-
-window.openBalanceModal = function(userId){
-
-    currentBalanceUserId = userId;
-
-    const user =
-    users.find(x => x.id === userId);
-
-    if(!user) return;
-
-
-    document
-    .getElementById("balanceUserInfo")
-    .innerHTML =
-    `
-    <b>${esc(user.username || "User")}</b><br>
-    ${esc(user.email || "")}<br>
-    Current Balance: ₹${Number(user.balance || 0)}
-    `;
-
-
-    document
-    .getElementById("newBalance")
-    .value =
-    Number(user.balance || 0);
-
-
-    openModal("balanceModal");
-
-};
-
-
-window.saveBalance = async function(){
-
-    if(!currentBalanceUserId){
-        return;
-    }
-
-
-    const balance =
-    Number(
-        document
-        .getElementById("newBalance")
-        .value
-    );
-
-
-    if(balance < 0 || !Number.isFinite(balance)){
-
-        showToast("Enter valid balance.");
-
-        return;
-    }
-
-
-    try{
-
-        await updateDoc(
-            doc(
-                db,
-                "users",
-                currentBalanceUserId
-            ),
-            {
-                balance
-            }
-        );
-
-
-        closeModal("balanceModal");
-
-        showToast("Balance updated.");
-
-    }catch(error){
-
-        console.error(error);
-
-        showToast("Balance update failed.");
-
-    }
-
-};
-
-
-/* =====================================================
-WALLET REQUESTS
-===================================================== */
-
-window.loadRequests = function(){
-
-    if(unsubRequests){
-        unsubRequests();
-    }
-
-
-    unsubRequests =
-    onSnapshot(
-        query(
-            collection(db,"wallet_requests"),
-            orderBy("timestamp","desc")
-        ),
-        snapshot => {
-
-            walletRequests = [];
-
-            snapshot.forEach(item => {
-
-                walletRequests.push({
-                    id:item.id,
-                    ...item.data()
-                });
-
-            });
-
-
-            const deposits =
-            walletRequests.filter(
-                x =>
-                x.type === "deposit" &&
-                x.status === "pending"
-            ).length;
-
-
-            const withdrawals =
-            walletRequests.filter(
-                x =>
-                x.type === "withdraw" &&
-                x.status === "pending"
-            ).length;
-
-
-            document
-            .getElementById("statDeposits")
-            .textContent =
-            deposits;
-
-
-            document
-            .getElementById("statWithdrawals")
-            .textContent =
-            withdrawals;
-
-
-            renderRequests();
-
-        },
-        error => {
-
-            console.error(error);
-
-            showToast("Wallet permission denied.");
-
-        }
-    );
-
-};
-
-
-function renderRequests(){
-
-    const box =
-    document.getElementById("homeRequests");
-
-
-    const pending =
-    walletRequests.filter(
-        x => x.status === "pending"
-    );
-
-
-    if(!pending.length){
-
-        box.innerHTML =
-        `
-        <div class="empty">
-            <i class="fa-solid fa-circle-check"></i>
-            No pending requests.
-        </div>
-        `;
-
-        return;
-    }
-
-
-    box.innerHTML =
-    pending.slice(0,20).map(req => {
-
-        const isDeposit =
-        req.type === "deposit";
-
-
-        return `
-        <div class="listItem">
-
-            <div class="statIcon">
-                <i class="fa-solid ${
-                    isDeposit
-                    ? "fa-plus"
-                    : "fa-arrow-up"
-                }"></i>
-            </div>
-
-            <div class="listInfo">
-
-                <b>
-                    ${esc(req.username || "User")}
-                </b>
-
-                <span>
-                    ${isDeposit ? "Deposit" : "Withdrawal"}
-                    ${
-                        req.utr
-                        ? " • UTR: " + esc(req.utr)
-                        : ""
-                    }
-                </span>
-
-            </div>
-
-            <div>
-
-                <div
-                class="amount ${
-                    isDeposit
-                    ? "green"
-                    : "red"
-                }">
-
-                    ₹${Number(req.amount || 0)}
-
-                </div>
-
-                <button
-                class="mini"
-                style="margin-top:5px"
-                onclick="openRequestModal('${req.id}')">
-
-                Review
-
-                </button>
-
-            </div>
-
-        </div>
-        `;
-
-    }).join("");
-
-}
-
-
-/* =====================================================
-REQUEST MODAL
-===================================================== */
-
-window.openRequestModal = function(id){
-
-    const request =
-    walletRequests.find(x => x.id === id);
-
-    if(!request) return;
-
-
-    currentRequest = request;
-
-
-    document
-    .getElementById("requestModalTitle")
-    .textContent =
-    request.type === "deposit"
-    ? "Deposit Request"
-    : "Withdrawal Request";
-
-
-    document
-    .getElementById("requestDetails")
-    .innerHTML =
-    `
-    <div class="card">
-
-        <div class="listItem">
-
-            <div class="listInfo">
-                <b>${esc(request.username || "User")}</b>
-                <span>${esc(request.userId || "")}</span>
-            </div>
-
-            <div class="amount">
-                ₹${Number(request.amount || 0)}
-            </div>
-
-        </div>
-
-        <div class="helpText">
-            Type: ${esc(request.type || "")}<br>
-            UTR: ${esc(request.utr || "-")}<br>
-            UPI: ${esc(request.userUpi || "-")}<br>
-            Status: ${esc(request.status || "")}
-        </div>
-
-    </div>
-    `;
-
-
-    openModal("requestModal");
-
-};
-
-
-window.approveCurrentRequest = async function(){
-
-    if(!currentRequest) return;
-
-
-    try{
-
-        if(currentRequest.type === "deposit"){
-
-            await runTransaction(
-                db,
-                async(transaction) => {
-
-                    const requestRef =
-                    doc(
-                        db,
-                        "wallet_requests",
-                        currentRequest.id
-                    );
-
-                    const userRef =
-                    doc(
-                        db,
-                        "users",
-                        currentRequest.userId
-                    );
-
-
-                    const requestSnap =
-                    await transaction.get(requestRef);
-
-                    const userSnap =
-                    await transaction.get(userRef);
-
-
-                    if(!requestSnap.exists()){
-                        throw new Error("Request not found");
-                    }
-
-                    if(requestSnap.data().status !== "pending"){
-                        throw new Error("Request already processed");
-                    }
-
-                    if(!userSnap.exists()){
-                        throw new Error("User not found");
-                    }
-
-
-                    const oldBalance =
-                    Number(
-                        userSnap.data().balance || 0
-                    );
-
-                    const amount =
-                    Number(
-                        currentRequest.amount || 0
-                    );
-
-
-                    transaction.update(
-                        userRef,
-                        {
-                            balance:
-                            oldBalance + amount
-                        }
-                    );
-
-
-                    transaction.update(
-                        requestRef,
-                        {
-                            status:"approved",
-                            processedAt:serverTimestamp()
-                        }
-                    );
-
-
-                    transaction.set(
-                        doc(
-                            collection(
-                                db,
-                                "users",
-                                currentRequest.userId,
-                                "transactions"
-                            )
-                        ),
-                        {
-                            title:"Deposit Approved",
-                            amount,
-                            type:"credit",
-                            date:serverTimestamp()
-                        }
-                    );
-
-                }
-            );
-
-        }else{
-
-            await updateDoc(
-                doc(
-                    db,
-                    "wallet_requests",
-                    currentRequest.id
-                ),
-                {
-                    status:"approved",
-                    processedAt:serverTimestamp()
-                }
-            );
-
-        }
-
-
-        closeModal("requestModal");
-
-        currentRequest = null;
-
-        showToast("Request approved.");
-
-    }catch(error){
-
-        console.error(error);
-
-        showToast(
-            error.message ||
-            "Approval failed."
-        );
-
-    }
-
-};
-
-
-/* =====================================================
-REJECT REQUEST
-===================================================== */
-
-window.rejectCurrentRequest = async function(){
-
-    if(!currentRequest) return;
-
-
-    const reason =
-    prompt(
-        "Enter rejection reason:"
-    );
-
-
-    if(!reason || !reason.trim()){
-        return;
-    }
-
-
-    try{
-
-        if(currentRequest.type === "withdraw"){
-
-            await runTransaction(
-                db,
-                async(transaction) => {
-
-                    const requestRef =
-                    doc(
-                        db,
-                        "wallet_requests",
-                        currentRequest.id
-                    );
-
-                    const userRef =
-                    doc(
-                        db,
-                        "users",
-                        currentRequest.userId
-                    );
-
-
-                    const requestSnap =
-                    await transaction.get(requestRef);
-
-                    const userSnap =
-                    await transaction.get(userRef);
-
-
-                    if(!requestSnap.exists()){
-                        throw new Error("Request not found");
-                    }
-
-                    if(requestSnap.data().status !== "pending"){
-                        throw new Error("Request already processed");
-                    }
-
-                    if(!userSnap.exists()){
-                        throw new Error("User not found");
-                    }
-
-
-                    const oldBalance =
-                    Number(
-                        userSnap.data().balance || 0
-                    );
-
-                    const amount =
-                    Number(
-                        currentRequest.amount || 0
-                    );
-
-
-                    transaction.update(
-                        userRef,
-                        {
-                            balance:
-                            oldBalance + amount
-                        }
-                    );
-
-
-                    transaction.update(
-                        requestRef,
-                        {
-                            status:"rejected",
-                            rejectionReason:
-                            reason.trim(),
-                            processedAt:
-                            serverTimestamp()
-                        }
-                    );
-
-
-                    transaction.set(
-                        doc(
-                            collection(
-                                db,
-                                "users",
-                                currentRequest.userId,
-                                "transactions"
-                            )
-                        ),
-                        {
-                            title:"Withdrawal Rejected - Refund",
-                            amount,
-                            type:"credit",
-                            date:serverTimestamp()
-                        }
-                    );
-
-                }
-            );
-
-        }else{
-
-            await updateDoc(
-                doc(
-                    db,
-                    "wallet_requests",
-                    currentRequest.id
-                ),
-                {
-                    status:"rejected",
-                    rejectionReason:
-                    reason.trim(),
-                    processedAt:
-                    serverTimestamp()
-                }
-            );
-
-        }
-
-
-        closeModal("requestModal");
-
-        currentRequest = null;
-
-        showToast("Request rejected.");
-
-    }catch(error){
-
-        console.error(error);
-
-        showToast(
-            error.message ||
-            "Rejection failed."
-        );
-
-    }
-
-};
-
-
-/* =====================================================
-PAYMENT SETTINGS
-===================================================== */
-
-async function loadPayment(){
-
-    try{
-
-        const snap =
-        await getDoc(
-            doc(
-                db,
-                "settings",
-                "payment"
-            )
-        );
-
-
-        if(!snap.exists()){
-            return;
-        }
-
-
-        const data =
-        snap.data();
-
-
-        document
-        .getElementById("adminUpi")
-        .value =
-        data.adminUpi || "";
-
-
-        document
-        .getElementById("qrUrl")
-        .value =
-        data.qrCodeUrl || "";
-
-    }catch(error){
-
-        console.error(error);
-
-        showToast("Payment settings could not load.");
-
-    }
-
-}
-
-
-window.savePayment = async function(){
-
-    const adminUpi =
-    document
-    .getElementById("adminUpi")
-    .value
-    .trim();
-
-
-    const qrCodeUrl =
-    document
-    .getElementById("qrUrl")
-    .value
-    .trim();
-
-
-    try{
-
-        await setDoc(
-            doc(
-                db,
-                "settings",
-                "payment"
-            ),
-            {
-                adminUpi,
-                qrCodeUrl,
-                updatedAt:
-                serverTimestamp()
-            },
-            {
-                merge:true
-            }
-        );
-
-
-        showToast(
-            "Payment settings saved."
-        );
-
-    }catch(error){
-
-        console.error(error);
-
-        showToast(
-            "Firestore permission denied. Check Rules."
-        );
-
-    }
-
-};
-
-
-/* =====================================================
-SUPPORT
-===================================================== */
-
-async function loadTickets(){
-
-    try{
-
-        const snap =
-        await getDocs(
-            query(
-                collection(
-                    db,
-                    "support_tickets"
-                ),
-                orderBy("date","desc")
-            )
-        );
-
-
-        const tickets = [];
-
-        snap.forEach(item => {
-
-            tickets.push({
-                id:item.id,
-                ...item.data()
-            });
-
-        });
-
-
-        renderTickets(tickets);
-
-    }catch(error){
-
-        console.error(error);
-
-        document
-        .getElementById("ticketsList")
-        .innerHTML =
-        `
-        <div class="empty">
-            Unable to load tickets.
-        </div>
-        `;
-
-    }
-
-}
-
-
-window.loadTickets = loadTickets;
-
-
-function renderTickets(tickets){
-
-    const box =
-    document.getElementById("ticketsList");
-
-
-    if(!tickets.length){
-
-        box.innerHTML =
-        `
-        <div class="empty">
-            No support tickets.
-        </div>
-        `;
-
-        return;
-    }
-
-
-    box.innerHTML =
-    tickets.slice(0,30).map(ticket => {
-
-        return `
-        <div class="listItem">
-
-            <div class="statIcon">
-                <i class="fa-solid fa-headset"></i>
-            </div>
-
-            <div class="listInfo">
-
-                <b>${esc(ticket.email || "User")}</b>
-
-                <span>
-                    ${esc(ticket.issue || "")}
-                </span>
-
-            </div>
-
-            <button
-            class="mini"
-            onclick="openSupport('${ticket.id}',${JSON.stringify(ticket).replace(/"/g,'&quot;')})">
-
-            View
-
-            </button>
-
-        </div>
-        `;
-
-    }).join("");
-
-}
-
-
-window.openSupport = function(id,ticket){
-
-    document
-    .getElementById("supportDetails")
-    .innerHTML =
-    `
-    <div class="card">
-
-        <b style="font-size:12px">
-            ${esc(ticket.email || "")}
-        </b>
-
-        <div class="helpText" style="margin-top:10px">
-            ${esc(ticket.issue || "")}
-        </div>
-
-        <div class="helpText" style="margin-top:10px">
-            Status: ${esc(ticket.status || "pending")}
-        </div>
-
-    </div>
-    `;
-
-
-    openModal("supportModal");
-
-};
-
-
-/* =====================================================
-ENTER KEY LOGIN
-===================================================== */
-
-document
-.getElementById("adminPassword")
-.addEventListener(
-    "keydown",
-    event => {
-
-        if(event.key === "Enter"){
-            adminLogin();
-        }
-
-    }
-);
-
-</script>
-
-</body>
-</html>
+<nav class="bottomNav">
+
+  <div class="navInner">
+
+    <button
+      class="navBtn active"
+      onclick="goPage('home',this)"
+    >
+      <i class="fa-solid fa-house"></i>
+      <span>Home</span>
+    </button>
+
+    <button
+      class="navBtn"
+      onclick="goPage('games',this)"
+    >
+      <i class="fa-solid fa-gamepad"></i>
+      <span>Games<
